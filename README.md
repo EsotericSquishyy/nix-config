@@ -1,2 +1,1 @@
-# nix-config
-Repo for nix dotfiles
+Squishyy's NixOS Config
