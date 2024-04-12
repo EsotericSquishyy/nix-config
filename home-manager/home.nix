@@ -46,12 +46,11 @@
 
     # programs.neovim.enable = true;
     home.packages = with pkgs; [
-	firefox
-	neovim
-	discord
-	obsidian
-	dropbox
-	hyprland
+        firefox
+        neovim
+        discord
+        obsidian
+        dropbox
         neofetch
         nnn # terminal file manager
 
@@ -124,6 +123,10 @@
         userEmail = "jesselcobb@gmail.com";
     };
 
+    wayland.windowManager.hyprland = {
+        enable = true;
+        extraConfig = builtins.readFile ../dotfiles/hyprland.conf;
+    };
 
     # starship - an customizable prompt for any shell
     programs.starship = {
