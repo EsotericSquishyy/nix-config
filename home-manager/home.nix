@@ -31,6 +31,11 @@
             allowUnfree = true;
             # Workaround for https://github.com/nix-community/home-manager/issues/2942
             allowUnfreePredicate = _: true;
+
+            # For Obsidian
+            permittedInsecurePackages = [
+                "electron-25.9.0"
+            ];
         };
     };
 
@@ -41,6 +46,12 @@
 
     # programs.neovim.enable = true;
     home.packages = with pkgs; [
+	firefox
+	neovim
+	discord
+	obsidian
+	dropbox
+	hyprland
         neofetch
         nnn # terminal file manager
 
@@ -113,6 +124,7 @@
         userEmail = "jesselcobb@gmail.com";
     };
 
+
     # starship - an customizable prompt for any shell
     programs.starship = {
         enable = true;
@@ -156,5 +168,4 @@
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     home.stateVersion = "23.11";
-    programs.home-manager.enable = true;
 }
