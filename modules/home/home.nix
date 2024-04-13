@@ -133,7 +133,7 @@
 
     wayland.windowManager.hyprland = {
         enable = true;
-        extraConfig = builtins.readFile ../.config/hyprland.conf;
+        extraConfig = builtins.readFile ./../../.config/hyprland.conf;
     };
 
     # starship - an customizable prompt for any shell

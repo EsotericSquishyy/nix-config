@@ -12,7 +12,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        # hyprland.url = "github:hyprwm/Hyprland";
+        hyprland.url = "github:hyprwm/Hyprland";
 
         # hardware.url = "github:nixos/nixos-hardware";
         # nix-colors.url = "github:misterio77/nix-colors";
@@ -22,6 +22,7 @@
         self,
         nixpkgs,
         home-manager,
+        hyprland,
         ...
     } @ inputs: let
         inherit (self) outputs;
@@ -34,7 +35,13 @@
                 specialArgs = {inherit inputs outputs;};
                 modules = [
                     #./nixos/configuration.nix
-                    ./hosts/squishyyos/configuration.nix
+                    ./hosts/squishyy-os/configuration.nix
+
+                    hyprland.nixosModules.default
+                    {
+                        programs.hyprland.enable = true;
+                        programs.hyprland.xwayland.enable=true;
+                    }
 
                     # make home-manager as a module of nixos
                     # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -42,7 +49,7 @@
                         #home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
 
-                        home-manager.users.squishyy = import ./home-manager/home.nix;
+                        home-manager.users.squishyy = import ./modules/home/home.nix;
 
                         # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
                     }
@@ -57,7 +64,7 @@
                 pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
                 extraSpecialArgs = {inherit inputs outputs;};
                 modules = [
-                    ./home-manager/home.nix
+                    ./modules/home/home.nix
                 ];
             };
         };
