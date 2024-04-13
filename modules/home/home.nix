@@ -56,11 +56,13 @@
         nnn # terminal file manager
 
         # For Hyprland
-        kitty # Terminal Emulator
+        alacritty # Terminal Emulator
         waybar # Bar Widgets
         dunst # Notif daemon
         swww
         rofi-wayland # App manager
+        dolphin # File Manager
+
 
         # archives
         zip
