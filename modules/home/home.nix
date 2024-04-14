@@ -52,6 +52,7 @@
         discord
         obsidian
         dropbox
+
         neofetch # System info
         nnn # terminal file manager
 
@@ -61,7 +62,7 @@
         dunst # Notif daemon
         swww
         rofi-wayland # App manager
-        dolphin # File Manager
+        xfce.thunar # File Manager
 
 
         # archives
@@ -71,32 +72,32 @@
         p7zip
 
         # utils
-        ripgrep # recursively searches directories for a regex pattern
-        jq # A lightweight and flexible command-line JSON processor
-        yq-go # yaml processor https://github.com/mikefarah/yq
+        #ripgrep # recursively searches directories for a regex pattern
+        #jq # A lightweight and flexible command-line JSON processor
+        #yq-go # yaml processor https://github.com/mikefarah/yq
         eza # A modern replacement for ‘ls’
         fzf # A command-line fuzzy finder
 
         # networking tools
         mtr # A network diagnostic tool
-        iperf3
-        dnsutils  # `dig` + `nslookup`
-        ldns # replacement of `dig`, it provide the command `drill`
-        aria2 # A lightweight multi-protocol & multi-source command-line download utility
+        #iperf3
+        #dnsutils  # `dig` + `nslookup`
+        #ldns # replacement of `dig`, it provide the command `drill`
+        #aria2 # A lightweight multi-protocol & multi-source command-line download utility
         socat # replacement of openbsd-netcat
         nmap # A utility for network discovery and security auditing
         ipcalc  # it is a calculator for the IPv4/v6 addresses
 
         # misc
-        cowsay
+        #cowsay
         file
         which
         tree
-        gnused
-        gnutar
-        gawk
-        zstd
-        gnupg
+        #gnused
+        #gnutar
+        #gawk
+        #zstd
+        #gnupg
 
         # nix related
         #
@@ -105,24 +106,26 @@
         nix-output-monitor
 
         # productivity
-        hugo # static site generator
+        #hugo # static site generator
         glow # markdown previewer in terminal
 
-        btop  # replacement of htop/nmon
-        iotop # io monitoring
-        iftop # network monitoring
+        # system monitors
+        #btop  # replacement of htop/nmon
+        #iotop # io monitoring
+        #iftop # network monitoring
+        bottom # 'btm'
 
         # system call monitoring
-        strace # system call monitoring
-        ltrace # library call monitoring
-        lsof # list open files
+        #strace # system call monitoring
+        #ltrace # library call monitoring
+        #lsof # list open files
 
         # system tools
-        sysstat
-        lm_sensors # for `sensors` command
-        ethtool
-        pciutils # lspci
-        usbutils # lsusb
+        #sysstat
+        #lm_sensors # for `sensors` command
+        #ethtool
+        #pciutils # lspci
+        #usbutils # lsusb
     ];
 
     # Enable home-manager and git
@@ -137,6 +140,10 @@
         enable = true;
         extraConfig = builtins.readFile ./../../.config/hyprland.conf;
     };
+
+    programs.waybar = {
+        enable = true;
+    }
 
     # starship - an customizable prompt for any shell
     programs.starship = {
