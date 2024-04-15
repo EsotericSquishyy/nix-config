@@ -1,5 +1,5 @@
 # Hyprland - Wayland Compositor
-{ pkgs, lib, ...}: 
+{ pkgs, lib, config, ...}: 
 let
     startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
         ${pkgs.swww}/bin/swww init &
@@ -10,13 +10,19 @@ let
 in
 {
 
-    wayland.windowManager.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        settings = {
-            exec-once = ''${startupScript}/bin/start'';
+    options.hyprlandModule = {
+        enable = lib.mkEnableOption "enables hyprlandModule";
+    };
+
+    config = lib.mkIf config.hyprlandModule.enable {
+        wayland.windowManager.hyprland = {
+            enable = true;
+            xwayland.enable = true;
+            settings = {
+                exec-once = ''${startupScript}/bin/start'';
+            };
+            extraConfig = builtins.readFile ./hyprland.conf;
         };
-        extraConfig = builtins.readFile ./../../dotfiles/hypr/hyprland.conf;
     };
 
 }
