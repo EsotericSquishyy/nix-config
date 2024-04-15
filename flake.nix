@@ -38,10 +38,10 @@
                     ./hosts/squishyy-os/configuration.nix
 
                     #hyprland.nixosModules.default
-                    #{
-                    #    programs.hyprland.enable = true;
-                    #    programs.hyprland.xwayland.enable=true;
-                    #}
+                    {
+                        programs.hyprland.enable = true;
+                        programs.hyprland.xwayland.enable=true;
+                    }
 
                     home-manager.nixosModules.home-manager
                     {
