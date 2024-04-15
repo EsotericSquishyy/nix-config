@@ -62,8 +62,6 @@
         auto-optimise-store = true;
     };
 
-    # FIXME: Add the rest of your current configuration
-
     # Set your time zone.
     time.timeZone = "America/Los_Angeles";
     # Select internationalisation properties.
@@ -81,11 +79,13 @@
     };
 
     # Enable the X11 windowing system.
-    services.xserver.enable = true;
-    # Configure keymap in X11
     services.xserver = {
+        enable = true;
         layout = "us";
         xkbVariant = "";
+        displayManager.gdm.enable = true;
+        #desktopManager.gnome.enable = true;
+        displayManager.gdm.wayland = true;
     };
 
     networking.hostName = "squishyy-os";
@@ -99,12 +99,15 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    services.xserver.displayManager.gdm.enable = true;
-    #services.xserver.desktopManager.gnome.enable = true;
-    services.xserver.displayManager.gdm.wayland = true;
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
+
+    # Bluetooth
+    hardware.bluetooth = {
+        enable = true; # enables support for Bluetooth
+        powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    };
 
     # Enable sound with pipewire.
     sound.enable = true;
@@ -123,9 +126,7 @@
         #media-session.enable = true;
     };
 
-    # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
     users.users = {
-        # FIXME: Replace with your username
         squishyy = {
             # TODO: You can set an initial password for your user.
             # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
@@ -135,7 +136,6 @@
             openssh.authorizedKeys.keys = [
                 # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
             ];
-            # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
             extraGroups = [ "networkmanager" "wheel" ];
         };
     };

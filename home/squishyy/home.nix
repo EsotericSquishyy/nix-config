@@ -12,6 +12,8 @@
 
         # You can also split up your configuration and import pieces of it here:
         # ./nvim.nix
+
+        #../../modules
     ];
 
     nixpkgs = {
@@ -84,6 +86,8 @@
         #dnsutils  # `dig` + `nslookup`
         #ldns # replacement of `dig`, it provide the command `drill`
         #aria2 # A lightweight multi-protocol & multi-source command-line download utility
+        bluez # Bluetooth
+
         socat # replacement of openbsd-netcat
         nmap # A utility for network discovery and security auditing
         ipcalc  # it is a calculator for the IPv4/v6 addresses
@@ -138,7 +142,8 @@
 
     wayland.windowManager.hyprland = {
         enable = true;
-        extraConfig = builtins.readFile ./../../.config/hyprland.conf;
+        xwayland.enable = true;
+        extraConfig = builtins.readFile ./../../dotfiles/hypr/hyprland.conf;
     };
 
     # starship - an customizable prompt for any shell

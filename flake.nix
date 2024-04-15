@@ -24,7 +24,8 @@
         home-manager,
         hyprland,
         ...
-    } @ inputs: let
+    } @ inputs:
+    let
         inherit (self) outputs;
         system = "x86_64-linux";
     in {
@@ -34,22 +35,20 @@
             squishyy-os = nixpkgs.lib.nixosSystem {
                 specialArgs = {inherit inputs outputs;};
                 modules = [
-                    #./nixos/configuration.nix
                     ./hosts/squishyy-os/configuration.nix
 
-                    hyprland.nixosModules.default
+                    #hyprland.nixosModules.default
+                    #{
+                    #    programs.hyprland.enable = true;
+                    #    programs.hyprland.xwayland.enable=true;
+                    #}
+
+                    home-manager.nixosModules.home-manager
                     {
-                        programs.hyprland.enable = true;
-                        programs.hyprland.xwayland.enable=true;
-                    }
-
-                    # make home-manager as a module of nixos
-                    # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-                    home-manager.nixosModules.home-manager {
                         #home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
+                        #home-manager.useUserPackages = true;
 
-                        home-manager.users.squishyy = import ./modules/home/home.nix;
+                        home-manager.users.squishyy = import ./home/squishyy/home.nix;
 
                         # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
                     }
@@ -61,10 +60,10 @@
         # Available through 'home-manager --flake .#squishyy@squishyy-os'
         homeConfigurations = {
             "squishyy@squishyy-os" = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+                pkgs = nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
                 extraSpecialArgs = {inherit inputs outputs;};
                 modules = [
-                    ./modules/home/home.nix
+                    ./home/squishyy/home.nix
                 ];
             };
         };
