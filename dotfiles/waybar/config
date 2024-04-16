@@ -33,13 +33,14 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "pulseaudio": {
-        "format": "<span color='#b4befe'>{icon}</span> {volume}%",
-        "format-muted": "",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 {volume}%",
         "format-icons": {
             "headphone": "",
-            "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]
+            "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""],
         },
         "scroll-step": 1,
+        "on-click": "amixer -q sset Master toggle",
         "tooltip": false,
     },
     "bluetooth": {

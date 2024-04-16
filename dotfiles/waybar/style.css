@@ -28,8 +28,16 @@ window#waybar {
 }
 
 #workspaces button {
-  background: #11111b;
+  /* background: #11111b; */
   color: #b4befe;
+}
+#workspaces button.active {
+  background: #b4befe;
+  color: #11111b;
+}
+#workspaces button:hover {
+  background: #8292fd;
+  color: #11111b;
 }
 
 #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #custom-power {
