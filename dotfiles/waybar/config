@@ -1,123 +1,81 @@
-// -*- mode: json -*-
-
 {
     "layer": "top",
     "position": "top",
-
-    "modules-left": [
-        "sway/workspaces",
-        "custom/right-arrow-dark"
-    ],
-    "modules-center": [
-        "custom/left-arrow-dark",
-        "clock#1",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "clock#2",
-        "custom/right-arrow-dark",
-        "custom/right-arrow-light",
-        "clock#3",
-        "custom/right-arrow-dark"
-    ],
-    "modules-right": [
-        "custom/left-arrow-dark",
-        "pulseaudio",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "memory",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "cpu",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "battery",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "disk",
-        "custom/left-arrow-light",
-        "custom/left-arrow-dark",
-        "tray"
-    ],
-
-    "custom/left-arrow-dark": {
-        "format": "",
-        "tooltip": false
+    "modules-left": ["custom/nixos", "hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["backlight", "pulseaudio", "bluetooth", "network", "battery", "custom/power"],
+    "custom/nixos": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "rofi -show drun"
     },
-    "custom/left-arrow-light": {
-        "format": "",
-        "tooltip": false
-    },
-    "custom/right-arrow-dark": {
-        "format": "",
-        "tooltip": false
-    },
-    "custom/right-arrow-light": {
-        "format": "",
-        "tooltip": false
-    },
-
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "format": "{name}"
-    },
-
-    "clock#1": {
-        "format": "{:%a}",
-        "tooltip": false
-    },
-    "clock#2": {
-        "format": "{:%H:%M}",
-        "tooltip": false
-    },
-    "clock#3": {
-        "format": "{:%m-%d}",
-        "tooltip": false
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume:2}%",
-        "format-bluetooth": "{icon}  {volume}%",
-        "format-muted": "MUTE",
+    "hyprland/workspaces": {
+        "format": "{name}",
+        // "format": "{icon}",
+        "tooltip": false,
+        "all-outputs": true,
         "format-icons": {
-            "headphones": "",
-            "default": [
-                "",
-                ""
-            ]
+            "active": "",
+            "default": ""
+        }
+    },
+    "clock": {
+        "format": " {:%H:%M}",
+        // https://www.mankier.com/3/strftime
+        "format-alt": "󰃭 {:%a, %B %d, %Y}",
+        "actions": {
+            "on-click": "mode",
+        }
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "pulseaudio": {
+        "format": "<span color='#b4befe'>{icon}</span> {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]
         },
-        "scroll-step": 5,
-        "on-click": "pamixer -t",
-        "on-click-right": "pavucontrol"
+        "scroll-step": 1,
+        "tooltip": false,
     },
-    "memory": {
-        "interval": 5,
-        "format": "Mem {}%"
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}   {device_address}",
     },
-    "cpu": {
-        "interval": 5,
-        "format": "CPU {usage:2}%"
+    "network": {
+        "interface": "wlp170s0",
+        "format": "{ifname}",
+        "format-wifi": " {essid}",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-disconnected": "󰖪 No Network",
+        "on-click": "alacritty -e nmtui",
+        "tooltip": false,
     },
     "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
+        "bat": "BAT1",
+        "full-at": 100,
         "format": "{icon} {capacity}%",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
+        "format-warning": "{icon} {capacity}% - {time}",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": "{H}h{M}m",
+        "format-charging": " {capacity}% - {time}",
+        "tooltip": false,
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
     },
-    "disk": {
-        "interval": 5,
-        "format": "Disk {percentage_used:2}%",
-        "path": "/"
+    "custom/power": {
+        "format": "{icon}",
+        "format-icons": ["  "],
+        "on-click": "wlogout --protocol layer-shell",
     },
-    "tray": {
-        "icon-size": 20
-    }
 }

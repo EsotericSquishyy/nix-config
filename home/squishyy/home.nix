@@ -47,6 +47,8 @@
         homeDirectory = "/home/squishyy";
     };
 
+    fonts.fontconfig.enable = true;
+
     # programs.neovim.enable = true;
     home.packages = with pkgs; [
         firefox
@@ -118,6 +120,7 @@
         #iotop # io monitoring
         #iftop # network monitoring
         bottom # 'btm'
+        brightnessctl
 
         # system call monitoring
         #strace # system call monitoring
@@ -125,11 +128,22 @@
         #lsof # list open files
 
         # system tools
+        wlogout # Logout menu
         #sysstat
         #lm_sensors # for `sensors` command
         #ethtool
         #pciutils # lspci
         #usbutils # lsusb
+
+        # Fonts
+        font-awesome
+        powerline-fonts
+        powerline-symbols
+        (nerdfonts.override { fonts = [
+            "NerdFontsSymbolsOnly"
+            "FiraCode"
+            "Mononoki"
+        ];})
     ];
 
     # Enable home-manager and git
