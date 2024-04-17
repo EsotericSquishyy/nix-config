@@ -10,9 +10,6 @@
         # If you want to use home-manager modules from other flakes (such as nix-colors):
         # inputs.nix-colors.homeManagerModule
 
-        # You can also split up your configuration and import pieces of it here:
-        # ./nvim.nix
-
         ../../modules
     ];
 
@@ -50,9 +47,10 @@
     fonts.fontconfig.enable = true;
 
     # programs.neovim.enable = true;
+
     home.packages = with pkgs; [
         firefox
-        neovim
+        #neovim
         discord
         obsidian
         dropbox

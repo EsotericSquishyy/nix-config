@@ -9,10 +9,17 @@
         # Home manager
         home-manager = {
             url = "github:nix-community/home-manager/release-23.11";
+            # url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         hyprland.url = "github:hyprwm/Hyprland";
+
+        nixvim = {
+            url = "github:nix-community/nixvim/nixos-23.11";
+            #url = "github:nix-community/nixvim";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # hardware.url = "github:nixos/nixos-hardware";
         # nix-colors.url = "github:misterio77/nix-colors";
@@ -23,6 +30,7 @@
         nixpkgs,
         home-manager,
         hyprland,
+        nixvim,
         ...
     } @ inputs:
     let
@@ -37,20 +45,25 @@
                 modules = [
                     ./hosts/squishyy-os/configuration.nix
 
-                    #hyprland.nixosModules.default
+                    hyprland.nixosModules.default
                     {
-                        programs.hyprland.enable = true;
+			programs.hyprland.enable = true;
                         programs.hyprland.xwayland.enable=true;
                     }
+
+                    #nixvim.nixosModules.nixvim
+		    #{ programs.nixvim.enable = true; }
 
                     home-manager.nixosModules.home-manager
                     {
                         #home-manager.useGlobalPkgs = true;
                         #home-manager.useUserPackages = true;
-
-                        home-manager.users.squishyy = import ./home/squishyy/home.nix;
-
-                        # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+                        #home-manager.users.squishyy = import ./home/squishyy/home.nix;
+			#home-manager.extraSpecialArgs = [];
+                        home-manager.users.squishyy.imports = [
+			./home/squishyy/home.nix
+			nixvim.homeManagerModules.nixvim
+			];
                     }
                 ];
             };
@@ -63,6 +76,9 @@
                 pkgs = nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
                 extraSpecialArgs = {inherit inputs outputs;};
                 modules = [
+                    nixvim.homeManagerModules.nixvim
+                    hyprland.homeManagerModules.default
+                    home-manager.homeManagerModules.home-manager
                     ./home/squishyy/home.nix
                 ];
             };
