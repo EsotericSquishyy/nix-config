@@ -8,8 +8,8 @@
 
         home.packages = with pkgs; [
             ripgrep # Telescope
-            #zathura # LaTeX
-            #texliveMedium # LaTeX
+            zathura # LaTeX
+            texliveMedium # LaTeX
         ];
 
         # https://nix-community.github.io/nixvim/
@@ -118,10 +118,10 @@
                 };
 
                 # LaTeX
-                # vimtex = {
-                #     enable = true;
-                #     viewMethod =  "zathura";
-                # };
+                vimtex = {
+                    enable = true;
+                    viewMethod =  "zathura";
+                };
 
                 # Typst
                 typst-vim = {
@@ -185,6 +185,7 @@
 
             # Manual Lua Config
             extraConfigLua = ''
+                vim.cmd([[highlight Normal ctermbg=none guibg=none]])
             '';
         };
 
