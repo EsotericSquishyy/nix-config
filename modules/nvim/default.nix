@@ -9,8 +9,7 @@
         home.packages = with pkgs; [
             ripgrep # Telescope
             #zathura # LaTeX
-            mupdf
-            texliveMedium # LaTeX
+            #texliveMedium # LaTeX
         ];
 
         # https://nix-community.github.io/nixvim/
@@ -119,11 +118,10 @@
                 };
 
                 # LaTeX
-                vimtex = {
-                    enable = true;
-                    #viewMethod =  "zathura";
-                    viewMethod =  "mupdf";
-                };
+                # vimtex = {
+                #     enable = true;
+                #     viewMethod =  "zathura";
+                # };
 
                 # Typst
                 typst-vim = {
