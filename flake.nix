@@ -47,23 +47,23 @@
 
                     hyprland.nixosModules.default
                     {
-			programs.hyprland.enable = true;
+                        programs.hyprland.enable = true;
                         programs.hyprland.xwayland.enable=true;
                     }
 
                     #nixvim.nixosModules.nixvim
-		    #{ programs.nixvim.enable = true; }
+                    #{ programs.nixvim.enable = true; }
 
                     home-manager.nixosModules.home-manager
                     {
                         #home-manager.useGlobalPkgs = true;
                         #home-manager.useUserPackages = true;
                         #home-manager.users.squishyy = import ./home/squishyy/home.nix;
-			#home-manager.extraSpecialArgs = [];
+                        #home-manager.extraSpecialArgs = [];
                         home-manager.users.squishyy.imports = [
-			./home/squishyy/home.nix
-			nixvim.homeManagerModules.nixvim
-			];
+                            ./home/squishyy/home.nix
+                            nixvim.homeManagerModules.nixvim
+                        ];
                     }
                 ];
             };
