@@ -87,11 +87,23 @@
 
         devShells.${system} = {
             python = pkgs.mkShell {
+                # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/python.section.md#buildpythonpackage-function
                 nativeBuildInputs = with pkgs.buildPackages; [
-                    python311
-                    python311Packages.numpy
-                    python311Packages.pandas
-                    python311Packages.matplotlib
+                    (python3.withPackages (ps: with ps; with python3Packages; [
+                        pandas
+                        numpy
+                        matplotlib
+
+                        (buildPythonPackage rec {
+                            pname = "pyrtl";
+                            version = "0.10.2";
+                            src = fetchPypi {
+                                inherit pname version;
+                                sha256 = "sha256-Ji2EAe/tI4hQ+n8EMm+uBkCjzXi+fSv+m17EeQ0Zysg=";
+                            };
+                            doCheck = false;
+                        })
+                    ]))
                 ];
             };
 
