@@ -46,14 +46,14 @@
 
     fonts.fontconfig.enable = true;
 
-    # programs.neovim.enable = true;
-
     home.packages = with pkgs; [
         firefox
         #neovim
         discord
         obsidian
         dropbox
+
+        nodejs_21
 
         neofetch # System info
         nnn # terminal file manager
@@ -65,7 +65,6 @@
         swww
         rofi-wayland # App manager
         xfce.thunar # File Manager
-
 
         # archives
         zip
@@ -87,6 +86,7 @@
         #ldns # replacement of `dig`, it provide the command `drill`
         #aria2 # A lightweight multi-protocol & multi-source command-line download utility
         bluez # Bluetooth
+        networkmanagerapplet
 
         socat # replacement of openbsd-netcat
         nmap # A utility for network discovery and security auditing

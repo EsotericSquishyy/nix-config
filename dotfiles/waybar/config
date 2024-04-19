@@ -56,7 +56,6 @@
         "format-wifi": " {essid}",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "format-disconnected": "󰖪 No Network",
-        "on-click": "alacritty -e nmtui",
         "tooltip": false,
     },
     "battery": {
@@ -67,7 +66,7 @@
         "format-icons": ["", "", "", "", ""],
         "format-time": "{H}h{M}m",
         "format-charging": " {capacity}% - {time}",
-        "tooltip": false,
+        "tooltip": true,
         "interval": 30,
         "states": {
             "warning": 25,
@@ -78,5 +77,6 @@
         "format": "{icon}",
         "format-icons": ["  "],
         "on-click": "wlogout --protocol layer-shell",
+        "tooltip": false,
     },
 }

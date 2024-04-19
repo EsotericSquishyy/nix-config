@@ -36,6 +36,7 @@
     let
         inherit (self) outputs;
         system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
     in {
         # NixOS configuration entrypoint
         # Available through 'nixos-rebuild --flake .#squishyy-os'
@@ -81,6 +82,32 @@
                     home-manager.homeManagerModules.home-manager
                     ./home/squishyy/home.nix
                 ];
+            };
+        };
+
+        devShells.${system} = {
+            python = pkgs.mkShell {
+                nativeBuildInputs = with pkgs.buildPackages; [
+                    python311
+                    python311Packages.numpy
+                    python311Packages.pandas
+                    python311Packages.matplotlib
+                ];
+            };
+
+            jupyter = pkgs.mkShell {
+                nativeBuildInputs = with pkgs.buildPackages; [
+                    (python3.withPackages (ps: with ps; with python3Packages; [
+                        jupyter
+                        ipython
+                        pandas
+                        scipy
+                        numpy
+                        matplotlib
+                    ]))
+                ];
+
+                shellHook = "jupyter-notebook";
             };
         };
     };
