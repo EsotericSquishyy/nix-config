@@ -28,6 +28,7 @@
     outputs = {
         self,
         nixpkgs,
+        nixpkgs-unstable,
         home-manager,
         hyprland,
         nixvim,
@@ -37,6 +38,7 @@
         inherit (self) outputs;
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
+        pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in {
         # NixOS configuration entrypoint
         # Available through 'nixos-rebuild --flake .#squishyy-os'
@@ -60,7 +62,7 @@
                         #home-manager.useGlobalPkgs = true;
                         #home-manager.useUserPackages = true;
                         #home-manager.users.squishyy = import ./home/squishyy/home.nix;
-                        #home-manager.extraSpecialArgs = [];
+                        home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
                         home-manager.users.squishyy.imports = [
                             ./home/squishyy/home.nix
                             nixvim.homeManagerModules.nixvim
@@ -75,7 +77,7 @@
         homeConfigurations = {
             "squishyy@squishyy-os" = home-manager.lib.homeManagerConfiguration {
                 pkgs = nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
-                extraSpecialArgs = {inherit inputs outputs;};
+                extraSpecialArgs = {inherit inputs outputs pkgs-unstable;};
                 modules = [
                     nixvim.homeManagerModules.nixvim
                     hyprland.homeManagerModules.default

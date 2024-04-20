@@ -4,6 +4,7 @@
     lib,
     config,
     pkgs,
+    pkgs-unstable,
     ...
 }: {
     imports = [
@@ -46,7 +47,10 @@
 
     fonts.fontconfig.enable = true;
 
-    home.packages = with pkgs; [
+    #programs.nh.enable = true;
+    programs.zsh.enable = true;
+
+    home.packages = (with pkgs; [
         firefox
         #neovim
         discord
@@ -107,7 +111,7 @@
         #
         # it provides the command `nom` works just like `nix`
         # with more details log output
-        nix-output-monitor
+        #nix-output-monitor
 
         # productivity
         #hugo # static site generator
@@ -142,7 +146,9 @@
             "FiraCode"
             "Mononoki"
         ];})
-    ];
+    ]) ++ (with pkgs-unstable; [
+        nh # Nix Helper
+    ]);
 
     # Enable home-manager and git
     programs.home-manager.enable = true;
