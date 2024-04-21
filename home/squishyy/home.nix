@@ -56,6 +56,7 @@
         discord
         obsidian
         dropbox
+        whatsapp-for-linux
 
         nodejs_21
 
