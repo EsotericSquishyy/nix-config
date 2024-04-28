@@ -51,25 +51,29 @@
     programs.zsh.enable = true;
 
     home.packages = (with pkgs; [
-        firefox
-        #neovim
-        discord
-        obsidian
-        dropbox
-        whatsapp-for-linux
+        # Applications
+        firefox             # Browser
+        discord             # Messaging
+        obsidian            # Notes
+        dropbox             # Cloud Storage
+        whatsapp-for-linux  # Messaging
+        gimp                # pdf/img editor
 
-        nodejs_21
+        # Toolchains/Compilers/etc.
+        nodejs_21           # node.js
+        libgcc              # gcc, linker is only used in env
+        ghc                 # Haskell
 
-        neofetch # System info
-        nnn # terminal file manager
+        neofetch            # System info
+        nnn                 # terminal file manager
 
         # For Hyprland
-        alacritty # Terminal Emulator
-        waybar # Bar Widgets
-        dunst # Notif daemon
-        swww
-        rofi-wayland # App manager
-        xfce.thunar # File Manager
+        alacritty           # Terminal Emulator
+        waybar              # Bar Widgets
+        dunst               # Notif daemon
+        swww                # Wallpaper daemon
+        rofi-wayland        # App manager
+        xfce.thunar         # File Manager
 
         # archives
         zip
@@ -83,6 +87,7 @@
         #yq-go # yaml processor https://github.com/mikefarah/yq
         eza # A modern replacement for ‘ls’
         fzf # A command-line fuzzy finder
+        sage # calculator
 
         # networking tools
         mtr # A network diagnostic tool
@@ -107,12 +112,6 @@
         #gawk
         #zstd
         #gnupg
-
-        # nix related
-        #
-        # it provides the command `nom` works just like `nix`
-        # with more details log output
-        #nix-output-monitor
 
         # productivity
         #hugo # static site generator

@@ -125,6 +125,23 @@
 
                 shellHook = "jupyter-notebook";
             };
+
+            rust = pkgs.mkShell {
+                nativeBuildInputs = with pkgs.buildPackages; [
+                    gcc
+
+                    #rustup
+                    cargo
+                    rustc
+                ];
+            };
+
+            c = pkgs.mkShell {
+                nativeBuildInputs = with pkgs.buildPackages; [
+                    gcc
+                    clang
+                ];
+            };
         };
     };
 }

@@ -1,10 +1,10 @@
 # nvim - Text Editor
 { pkgs, lib, config, ...}: {
 
-    options.nvimModule = {
-        enable = lib.mkEnableOption "enables nvimModule";
+    options.neovimModule = {
+        enable = lib.mkEnableOption "enables neovimModule";
     };
-    config = lib.mkIf config.nvimModule.enable {
+    config = lib.mkIf config.neovimModule.enable {
 
         home.packages = with pkgs; [
             ripgrep # Telescope
@@ -59,7 +59,15 @@
                         };
                         pyright.enable = true;
                         nil_ls.enable = true;
+                        clangd.enable = true;
+                        rust-analyzer.enable = true;
+                        html.enable = true;
+                        typst-lsp.enable = true;
                     };
+                };
+
+                nvim-cmp = {
+                    enable = true;
                 };
 
                 # Buffer Bar

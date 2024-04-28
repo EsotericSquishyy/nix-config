@@ -34,9 +34,11 @@
                 scrolling.multiplier = 5;
                 selection.save_to_clipboard = true;
                 window = {
+                    blur = true;
                     opacity = 0.9;
                     padding.x = 15;
                     padding.y = 15;
+                    decorations = "None";
                 };
             };
         };
