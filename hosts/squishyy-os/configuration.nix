@@ -84,8 +84,9 @@
         layout = "us";
         xkbVariant = "";
         displayManager.gdm.enable = true;
-        #desktopManager.gnome.enable = true;
         displayManager.gdm.wayland = true;
+        # displayManager.sddm.enable = true;
+        # displayManager.sddm.theme = "${import ../../theme/sddm-theme.nix {inherit pkgs;}}";
     };
 
     networking.hostName = "squishyy-os";

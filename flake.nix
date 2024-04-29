@@ -22,7 +22,7 @@
         };
 
         # hardware.url = "github:nixos/nixos-hardware";
-        # nix-colors.url = "github:misterio77/nix-colors";
+        nix-colors.url = "github:misterio77/nix-colors";
     };
 
     outputs = {
@@ -32,6 +32,7 @@
         home-manager,
         hyprland,
         nixvim,
+        nix-colors,
         ...
     } @ inputs:
     let
@@ -48,24 +49,20 @@
                 modules = [
                     ./hosts/squishyy-os/configuration.nix
 
-                    hyprland.nixosModules.default
+                     hyprland.nixosModules.default
                     {
                         programs.hyprland.enable = true;
                         programs.hyprland.xwayland.enable=true;
                     }
-
-                    #nixvim.nixosModules.nixvim
-                    #{ programs.nixvim.enable = true; }
 
                     home-manager.nixosModules.home-manager
                     {
                         #home-manager.useGlobalPkgs = true;
                         #home-manager.useUserPackages = true;
                         #home-manager.users.squishyy = import ./home/squishyy/home.nix;
-                        home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
+                        home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
                         home-manager.users.squishyy.imports = [
                             ./home/squishyy/home.nix
-                            nixvim.homeManagerModules.nixvim
                         ];
                     }
                 ];
@@ -79,9 +76,6 @@
                 pkgs = nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
                 extraSpecialArgs = {inherit inputs outputs pkgs-unstable;};
                 modules = [
-                    nixvim.homeManagerModules.nixvim
-                    hyprland.homeManagerModules.default
-                    home-manager.homeManagerModules.home-manager
                     ./home/squishyy/home.nix
                 ];
             };

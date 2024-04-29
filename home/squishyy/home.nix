@@ -6,11 +6,14 @@
     pkgs,
     pkgs-unstable,
     ...
-}: {
+}: let
+inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
+gruvboxplus = import ./icons/gruvbox-plus.nix { inherit pkgs; };
+in {
     imports = [
-        # If you want to use home-manager modules from other flakes (such as nix-colors):
-        # inputs.nix-colors.homeManagerModule
-
+        inputs.nix-colors.homeManagerModules.default
+        inputs.nixvim.homeManagerModules.nixvim
+        inputs.hyprland.homeManagerModules.default
         ../../modules
     ];
 
@@ -18,13 +21,6 @@
         overlays = [
             # If you want to use overlays exported from other flakes:
             # neovim-nightly-overlay.overlays.default
-
-            # Or define it inline, for example:
-            # (final: prev: {
-            #   hi = final.hello.overrideAttrs (oldAttrs: {
-            #     patches = [ ./change-hello-to-hi.patch ];
-            #   });
-            # })
         ];
         # Configure your nixpkgs instance
         config = {
@@ -37,6 +33,31 @@
             permittedInsecurePackages = [
                 "electron-25.9.0"
             ];
+        };
+    };
+
+    #colorScheme = inputs.nix-colors.colorSchemes.darkmoss;
+    colorScheme = {
+        slug = "sushi";
+        name = "Sushi";
+        author = "pywal - squishyy";
+        palette = {
+            base00 = "#0E121B";
+            base01 = "#4C4D4F";
+            base02 = "#6C6A5F";
+            base03 = "#C15E59";
+            base04 = "#6F8F70";
+            base05 = "#979274";
+            base06 = "#DC9548";
+            base07 = "#c8cbba";
+            base08 = "#8c8e82";
+            base09 = "#4C4D4F";
+            base0A = "#6C6A5F";
+            base0B = "#C15E59";
+            base0C = "#6F8F70";
+            base0D = "#979274";
+            base0E = "#DC9548";
+            base0F = "#c8cbba";
         };
     };
 
@@ -63,9 +84,11 @@
         nodejs_21           # node.js
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
+        typst               # Out-of-editor compiler for typst
 
         neofetch            # System info
         nnn                 # terminal file manager
+        pywal               # Generate color palettes
 
         # For Hyprland
         alacritty           # Terminal Emulator
@@ -166,6 +189,25 @@
         '';
 
         shellAliases = {
+        };
+    };
+
+    gtk = {
+        enable = true;
+        theme = {
+            name = "${config.colorScheme.slug}";
+            package = gtkThemeFromScheme { scheme = config.colorScheme; };
+        };
+        iconTheme = {
+            package = pkgs.zafiro-icons;
+            name = "Zafiro-icons-Dark";
+        };
+        cursorTheme = {
+            /* package = pkgs.graphite-cursors;
+            name = "graphite-dark"; */
+            package = pkgs.bibata-cursors;
+            name = "Bibate-Modern-Ice";
+            size = 17;
         };
     };
 

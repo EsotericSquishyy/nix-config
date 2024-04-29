@@ -1,5 +1,19 @@
 # nvim - Text Editor
-{ pkgs, lib, config, ...}: {
+{ pkgs, lib, config, ...}: 
+
+# https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/applications/editors/vim/plugins/vim-plugin-names
+# https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/vim.section.md
+let
+    typst-preview = pkgs.vimUtils.buildVimPlugin {
+        name = "typst-preview.nvim";
+        src = pkgs.fetchFromGitHub {
+            owner = "chomosuke";
+            repo = "typst-preview.nvim";
+            rev = "master";
+            hash = "sha256-Jxew9uOYzHUlFpqlhlSzHgOCx1kdJEuAWt1pI9aEZyk=";
+        };
+    };
+in {
 
     options.neovimModule = {
         enable = lib.mkEnableOption "enables neovimModule";
@@ -17,10 +31,32 @@
             enable = true;
             viAlias = true;
             vimAlias = true;
-            colorschemes.onedark.enable = true;
+            #colorschemes.onedark.enable = true;
+            colorschemes.base16 = {
+                enable = true;
+                customColorScheme = with config.colorScheme.palette; {
+                    base00 = "#${base00}";
+                    base01 = "#${base01}";
+                    base02 = "#${base02}";
+                    base03 = "#${base03}";
+                    base04 = "#${base04}";
+                    base05 = "#${base05}";
+                    base06 = "#${base06}";
+                    base07 = "#${base07}";
+                    base08 = "#${base08}";
+                    base09 = "#${base09}";
+                    base0A = "#${base0A}";
+                    base0B = "#${base0B}";
+                    base0C = "#${base0C}";
+                    base0D = "#${base0D}";
+                    base0E = "#${base0E}";
+                    base0F = "#${base0F}";
+                };
+            };
             globals.mapleader = " ";
 
             options = {
+                termguicolors = true;
                 syntax = "on";
                 number = true; # Show line numbers
 
@@ -66,8 +102,27 @@
                     };
                 };
 
+                #luasnip.enable = true;
+
+                # Autocomplete
                 nvim-cmp = {
                     enable = true;
+                    mapping = {
+                        "<C-Space>" = "cmp.mapping.complete()";
+                        "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
+                        "<C-e>"     = "cmp.mapping.close()";
+                        "<C-f>"     = "cmp.mapping.scroll_docs(4)";
+                        "<CR>"      = "cmp.mapping.confirm({ select = true })";
+                        "<S-Tab>"   = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+                        "<Tab>"     = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+                    };
+                    autoEnableSources = true;
+                    sources = [
+                        { name = "nvim_lsp"; }
+                        #{ name = "luasnip"; }
+                        { name = "buffer"; }
+                        { name = "path"; }
+                    ];
                 };
 
                 # Buffer Bar
@@ -119,7 +174,7 @@
 
                     keymaps = {
                         "<leader>o".action = "find_files"; # Files
-                        "<leader>p".action = "builtin"; # Current dir
+                        "<leader>p".action = "live_grep"; # Current dir
                         "<leader>i".action = "buffers"; # Current file
                         "<leader>h".action = "help_tags"; # Vim man
                     };
@@ -134,6 +189,9 @@
                 # Typst
                 typst-vim = {
                     enable = true;
+                    pdfViewer = "zathura";
+                    keymaps.watch = "<leader>l";
+                    keymaps.silent = true;
                 };
 
                 #hardtime.enable = true; # Learn vim commands

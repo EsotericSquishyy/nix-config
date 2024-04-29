@@ -10,7 +10,7 @@
             enable = true;
             # custom settings
             settings = {
-                env.TERM = "xterm-256color";
+                env.TERM = "alacritty";
                 font = {
                     size = 15;
                     draw_bold_text_with_bright_colors = true;
@@ -39,6 +39,36 @@
                     padding.x = 15;
                     padding.y = 15;
                     decorations = "None";
+                };
+                colors = with config.colorScheme.palette; {
+                    primary = {
+                        foreground = "0x${base07}";
+                        background = "0x${base00}";
+                    };
+                    bright = {
+                        black   = "0x${base00}";
+                        blue    = "0x${base0D}";
+                        cyan    = "0x${base0C}";
+                        green   = "0x${base0B}";
+                        magenta = "0x${base0E}";
+                        red     = "0x${base08}";
+                        white   = "0x${base06}";
+                        yellow  = "0x${base09}";
+                    };
+                    normal = {
+                        black   = "0x${base00}";
+                        blue    = "0x${base0D}";
+                        cyan    = "0x${base0C}";
+                        green   = "0x${base0B}";
+                        magenta = "0x${base0E}";
+                        red     = "0x${base08}";
+                        white   = "0x${base06}";
+                        yellow  = "0x${base0A}";
+                    };
+                    cursor = {
+                        cursor  = "0x${base06}";
+                        text    = "0x${base06}";
+                    };
                 };
             };
         };
