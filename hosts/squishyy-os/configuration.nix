@@ -138,8 +138,12 @@
                 # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
             ];
             extraGroups = [ "networkmanager" "wheel" ];
+            shell = pkgs.zsh;
         };
     };
+
+    programs.zsh.enable = true; # Requires for correct sourcing
+    users.defaultUserShell = pkgs.zsh; # Required to automatically to use zsh as default
 
     services.openssh = {
         enable = true;

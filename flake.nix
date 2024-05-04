@@ -91,6 +91,7 @@
                         pandas
                         numpy
                         matplotlib
+                        sklearn-deap
 
                         (buildPythonPackage rec {
                             pname = "pyrtl";

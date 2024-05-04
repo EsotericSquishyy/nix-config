@@ -174,8 +174,8 @@ in {
 
                     keymaps = {
                         "<leader>o".action = "find_files"; # Files
-                        "<leader>p".action = "live_grep"; # Current dir
-                        "<leader>i".action = "buffers"; # Current file
+                        "<leader>p".action = "builtin"; # Current dir
+                        "<leader>i".action = "live_grep"; # Current dir
                         "<leader>h".action = "help_tags"; # Vim man
                     };
                 };

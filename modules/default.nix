@@ -7,6 +7,7 @@
         ./alacritty
         ./neovim
         ./pywal
+        ./zsh
     ];
 
     hyprlandModule.enable   = lib.mkDefault true;
@@ -15,4 +16,5 @@
     alacrittyModule.enable  = lib.mkDefault true;
     neovimModule.enable     = lib.mkDefault true;
     pywalModule.enable      = lib.mkDefault false;
+    zshModule.enable        = lib.mkDefault true;
 }
