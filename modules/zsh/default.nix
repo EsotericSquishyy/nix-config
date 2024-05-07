@@ -6,6 +6,10 @@
     };
 
     config = lib.mkIf config.zshModule.enable {
+        home.packages = with pkgs; [
+            thefuck
+        ];
+
         programs.zsh = {
             enable = true;
 
@@ -18,11 +22,21 @@
             history.size = 10000;
             history.path = "${config.xdg.dataHome}/zsh/history";
 
-            zplug = {
+            # Long load time
+            # zplug = {
+            #     enable = true;
+            #     plugins = [ 
+            #         # { name = "jeffreytse/zsh-vi-mode"; }
+            #         # { name = "zsh-users/zsh-autosuggestions"; }
+            #         # { name = "nvbn/thefuck"; }
+            #     ];
+            # };
+
+            oh-my-zsh = {
                 enable = true;
-                plugins = [ 
-                    # { name = "jeffreytse/zsh-vi-mode"; }
-                    { name = "zsh-users/zsh-autosuggestions"; }
+                plugins = [
+                    "git"
+                    "thefuck"
                 ];
             };
 
