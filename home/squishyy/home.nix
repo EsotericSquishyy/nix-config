@@ -14,6 +14,7 @@ in {
         inputs.nix-colors.homeManagerModules.default
         inputs.nixvim.homeManagerModules.nixvim
         inputs.hyprland.homeManagerModules.default
+        inputs.ags.homeManagerModules.default # Many dependencies
         ../../modules
     ];
 

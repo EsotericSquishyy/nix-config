@@ -6,8 +6,8 @@
         ./starship
         ./alacritty
         ./neovim
-        ./pywal
         ./zsh
+        ./ags
     ];
 
     hyprlandModule.enable   = lib.mkDefault true;
@@ -15,6 +15,6 @@
     starshipModule.enable   = lib.mkDefault true;
     alacrittyModule.enable  = lib.mkDefault true;
     neovimModule.enable     = lib.mkDefault true;
-    pywalModule.enable      = lib.mkDefault false;
     zshModule.enable        = lib.mkDefault true;
+    agsModule.enable        = lib.mkDefault true;
 }

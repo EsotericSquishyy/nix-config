@@ -22,7 +22,10 @@
         };
 
         # hardware.url = "github:nixos/nixos-hardware";
+
         nix-colors.url = "github:misterio77/nix-colors";
+
+        ags.url = "github:Aylur/ags";
     };
 
     outputs = {
