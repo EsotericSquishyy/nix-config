@@ -25,7 +25,8 @@
 
         nix-colors.url = "github:misterio77/nix-colors";
 
-        ags.url = "github:Aylur/ags";
+        # https://aylur.github.io/ags-docs/
+        # ags.url = "github:Aylur/ags"; # Eww alternative
     };
 
     outputs = {
