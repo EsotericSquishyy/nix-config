@@ -112,7 +112,11 @@
 
     # Enable sound with pipewire.
     sound.enable = true;
-    hardware.pulseaudio.enable = false;
+    hardware.pulseaudio = {
+        enable = false;
+        extraConfig = "";
+        package = pkgs.pulseaudioFull;
+    };
     security.rtkit.enable = true;
     services.pipewire = {
         enable = true;
@@ -154,6 +158,21 @@
             PasswordAuthentication = false;
         };
     };
+
+    # For gaming, not needed with steam
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
+    programs.steam.enable = true;
+    programs.steam.gamescopeSession.enable = true;
+    programs.gamemode.enable = true;
+
+    # Executables (Can also use 'steam-run zsh' to get shell)
+    programs.nix-ld.enable = true;
+    programs.nix-ld.libraries = with pkgs; [];
+
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     system.stateVersion = "23.11";

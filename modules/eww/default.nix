@@ -6,7 +6,7 @@
     };
 
     config = lib.mkIf config.ewwModule.enable {
-        home.packages = with pkgs; [ eww ];
+        home.packages = with pkgs; [ eww-wayland ];
 
         xdg.configFile."eww".source = ./config;
     };

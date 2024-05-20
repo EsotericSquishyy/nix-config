@@ -99,6 +99,17 @@ in {
         whatsapp-for-linux  # Messaging
         gimp                # pdf/img editor
         unityhub
+        # zoom-us           # Not stable
+        obs-studio          # Screen Recorder
+        jellyfin-ffmpeg     # File converter and Video Player
+        # libsForQt5.kdenlive # Video Editor
+        godot_4
+
+        # Gaming
+        mangohud            # FPS and System status
+        # protonup            # Proton Updater
+        # lutris              # Game Launcher
+        protonup-qt
 
         # Toolchains/Compilers/etc.
         nodejs_21           # node.js
@@ -167,6 +178,7 @@ in {
         #iftop # network monitoring
         bottom # 'btm'
         brightnessctl
+        pulseaudio
 
         # system call monitoring
         #strace # system call monitoring

@@ -70,7 +70,6 @@
         "interval": 30,
         "states": {
             "warning": 25,
-            "critical": 10
         },
     },
     "custom/power": {
