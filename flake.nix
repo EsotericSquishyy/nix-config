@@ -25,6 +25,11 @@
 
         nix-colors.url = "github:misterio77/nix-colors";
 
+        # kmonad = {
+        #     url = "github:kmonad/kmonad?dir=nix";
+        #     inputs.nixpkgs.follows = "nixpkgs";
+        # };
+
         # https://aylur.github.io/ags-docs/
         # ags.url = "github:Aylur/ags"; # Eww alternative
     };
@@ -53,7 +58,7 @@
                 modules = [
                     ./hosts/squishyy-os/configuration.nix
 
-                     hyprland.nixosModules.default
+                    hyprland.nixosModules.default
                     {
                         programs.hyprland.enable = true;
                         programs.hyprland.xwayland.enable=true;

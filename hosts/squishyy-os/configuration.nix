@@ -83,10 +83,25 @@
         enable = true;
         layout = "us";
         xkbVariant = "";
+
         displayManager.gdm.enable = true;
         displayManager.gdm.wayland = true;
         # displayManager.sddm.enable = true;
         # displayManager.sddm.theme = "${import ../../theme/sddm-theme.nix {inherit pkgs;}}";
+    };
+    services.keyd = {
+        # https://github.com/rvaiya/keyd
+        enable = true;
+        keyboards = {
+            default = {
+                ids = [ "*" ];
+                settings = {
+                    main = {
+                        capslock = "overload(control, esc)";
+                    };
+                };
+            };
+        };
     };
 
     networking.hostName = "squishyy-os";
