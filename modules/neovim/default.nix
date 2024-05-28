@@ -4,13 +4,13 @@
 # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/applications/editors/vim/plugins/vim-plugin-names
 # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/vim.section.md
 let
-    typst-preview = pkgs.vimUtils.buildVimPlugin {
-        name = "typst-preview.nvim";
+    transparent-nvim = pkgs.vimUtils.buildVimPlugin {
+        name = "transparent.nvim";
         src = pkgs.fetchFromGitHub {
-            owner = "chomosuke";
-            repo = "typst-preview.nvim";
-            rev = "master";
-            hash = "sha256-Jxew9uOYzHUlFpqlhlSzHgOCx1kdJEuAWt1pI9aEZyk=";
+            owner = "xiyaowong";
+            repo = "transparent.nvim";
+            rev = "main";
+            hash = "sha256-wT+7rmp08r0XYGp+MhjJX8dsFTar8+nf10CV9OdkOSk=";
         };
     };
 in {
@@ -251,7 +251,15 @@ in {
 
             # Manual Lua Config
             extraConfigLua = ''
-                vim.cmd([[highlight Normal ctermbg=none guibg=none]])
+                vim.cmd([[
+                    hi Normal ctermbg=none guibg=none
+                    hi NormalNC ctermbg=none guibg=none
+                    hi NonText ctermbg=none guibg=none
+                    hi LineNr ctermbg=none guibg=none
+                    hi BufferLineFill ctermbg=none ctermfg=none guibg=none guifg=none
+                    hi BufferLineTab ctermbg=none ctermfg=none guibg=none guifg=none
+                    hi BufferLineTabSelected ctermbg=none ctermfg=none guibg=none guifg=none
+                ]])
             '';
         };
 

@@ -8,7 +8,8 @@
         ./neovim
         ./zsh
         # ./ags
-        ./eww
+        # ./eww
+        ./tmux
     ];
 
     hyprlandModule.enable   = lib.mkDefault true;
@@ -17,6 +18,8 @@
     alacrittyModule.enable  = lib.mkDefault true;
     neovimModule.enable     = lib.mkDefault true;
     zshModule.enable        = lib.mkDefault true;
+    tmuxModule.enable       = lib.mkDefault true;
+
     # agsModule.enable        = lib.mkDefault false;
-    ewwModule.enable        = lib.mkDefault true;
+    # ewwModule.enable        = lib.mkDefault false;
 }

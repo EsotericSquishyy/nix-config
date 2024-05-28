@@ -34,8 +34,8 @@
                 scrolling.multiplier = 5;
                 selection.save_to_clipboard = true;
                 window = {
-                    blur = true;
-                    opacity = 0.9;
+                    #blur = true; # set in compositor settings
+                    opacity = 0.75;
                     padding.x = 15;
                     padding.y = 15;
                     decorations = "None";

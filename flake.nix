@@ -126,12 +126,15 @@
             };
 
             rust = pkgs.mkShell {
+                RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
                 nativeBuildInputs = with pkgs.buildPackages; [
                     gcc
 
                     #rustup
                     cargo
                     rustc
+                    rustfmt
+                    clippy
                 ];
             };
 

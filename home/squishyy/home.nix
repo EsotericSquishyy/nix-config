@@ -103,7 +103,8 @@ in {
         obs-studio          # Screen Recorder
         jellyfin-ffmpeg     # File converter and Video Player
         # libsForQt5.kdenlive # Video Editor
-        godot_4
+        # godot_4
+        krita
 
         # Gaming
         mangohud            # FPS and System status
