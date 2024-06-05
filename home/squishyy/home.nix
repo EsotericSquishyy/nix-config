@@ -113,7 +113,7 @@ in {
         protonup-qt
 
         # Toolchains/Compilers/etc.
-        nodejs_21           # node.js
+        nodejs_22           # node.js
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
         typst               # Out-of-editor compiler for typst
@@ -256,5 +256,5 @@ in {
     systemd.user.startServices = "sd-switch";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "23.11";
+    home.stateVersion = "24.05";
 }
