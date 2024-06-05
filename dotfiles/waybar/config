@@ -1,0 +1,81 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["custom/nixos", "hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["backlight", "pulseaudio", "bluetooth", "network", "battery", "custom/power"],
+    "custom/nixos": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "rofi -show drun"
+    },
+    "hyprland/workspaces": {
+        "format": "{name}",
+        // "format": "{icon}",
+        "tooltip": false,
+        "all-outputs": true,
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+    "clock": {
+        "format": " {:%H:%M}",
+        // https://www.mankier.com/3/strftime
+        "format-alt": "󰃭 {:%a, %B %d, %Y}",
+        "actions": {
+            "on-click": "mode",
+        }
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 {volume}%",
+        "format-icons": {
+            "headphone": "",
+            "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""],
+        },
+        "scroll-step": 1,
+        "on-click": "amixer -q sset Master toggle",
+        "tooltip": false,
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}   {device_address}",
+    },
+    "network": {
+        "interface": "wlp170s0",
+        "format": "{ifname}",
+        "format-wifi": " {essid}",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-disconnected": "󰖪 No Network",
+        "tooltip": false,
+    },
+    "battery": {
+        "bat": "BAT1",
+        "full-at": 100,
+        "format": "{icon} {capacity}%",
+        "format-warning": "{icon} {capacity}% - {time}",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": "{H}h{M}m",
+        "format-charging": " {capacity}% - {time}",
+        "tooltip": true,
+        "interval": 30,
+        "states": {
+            "warning": 25,
+        },
+    },
+    "custom/power": {
+        "format": "{icon}",
+        "format-icons": ["  "],
+        "on-click": "wlogout --protocol layer-shell",
+        "tooltip": false,
+    },
+}
