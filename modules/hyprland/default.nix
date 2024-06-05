@@ -217,10 +217,10 @@ in
                     ", XF86MonBrightnessDown, exec, $brightDown"
 
                     # Resize
-                    "$mainMod ALT, H, resizeactive, -10 0"
-                    "$mainMod ALT, L, resizeactive, 10 0"
-                    "$mainMod ALT, J, resizeactive, 0 10"
-                    "$mainMod ALT, K, resizeactive, 0 -10"
+                    "$mainMod ALT, H, resizeactive, -30 0"
+                    "$mainMod ALT, L, resizeactive, 30 0"
+                    "$mainMod ALT, J, resizeactive, 0 30"
+                    "$mainMod ALT, K, resizeactive, 0 -30"
                 ];
 
                 # Release binds

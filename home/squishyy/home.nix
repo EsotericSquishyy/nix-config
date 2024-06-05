@@ -129,6 +129,7 @@ in {
         swww                # Wallpaper daemon
         rofi-wayland        # App manager
         xfce.thunar         # File Manager
+        wl-clipboard        # Clipboard tool for nvim
 
         # archives
         zip

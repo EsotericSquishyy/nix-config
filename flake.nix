@@ -101,6 +101,8 @@
                         numpy
                         matplotlib
                         sklearn-deap
+                        tensorflow
+                        keras
 
                         (buildPythonPackage rec {
                             pname = "pyrtl";

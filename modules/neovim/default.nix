@@ -133,6 +133,12 @@ in {
                     showBufferCloseIcons = false;
                     showBufferIcons = false;
                     showCloseIcon = false;
+                    highlights = {
+                        fill.bg             = "none"; # Bar bg
+                        background.bg       = "none"; # Unselected tab bg
+                        bufferSelected.bg   = "none"; # Selected tab bg
+                        separator.bg        = "none"; # Separator bg
+                    };
                 };
 
                 # Status Bar
@@ -256,9 +262,6 @@ in {
                     hi NormalNC ctermbg=none guibg=none
                     hi NonText ctermbg=none guibg=none
                     hi LineNr ctermbg=none guibg=none
-                    hi BufferLineFill ctermbg=none ctermfg=none guibg=none guifg=none
-                    hi BufferLineTab ctermbg=none ctermfg=none guibg=none guifg=none
-                    hi BufferLineTabSelected ctermbg=none ctermfg=none guibg=none guifg=none
                 ]])
             '';
         };
