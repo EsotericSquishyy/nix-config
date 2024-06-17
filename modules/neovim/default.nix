@@ -23,7 +23,7 @@ in {
         home.packages = with pkgs; [
             ripgrep # Telescope
             zathura # LaTeX
-            texliveMedium # LaTeX
+            texliveFull # LaTeX
         ];
 
         # https://nix-community.github.io/nixvim/
@@ -31,6 +31,7 @@ in {
             enable = true;
             viAlias = true;
             vimAlias = true;
+            defaultEditor = true;
             #colorschemes.onedark.enable = true;
             colorschemes.base16 = {
                 enable = true;
@@ -59,6 +60,7 @@ in {
                 termguicolors = true;
                 syntax = "on";
                 number = true; # Show line numbers
+                relativenumber = true;
 
                 expandtab = true; # spaces for tabs, 'retab'
                 shiftwidth = 4; # Indentation of '>>' or '<<'
