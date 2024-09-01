@@ -199,6 +199,10 @@ in
                     # Scroll through existing workspaces with mainMod + scroll
                     "$mainMod, mouse_down, workspace, e+1"
                     "$mainMod, mouse_up, workspace, e-1"
+
+                    # screenshot 
+                    ", Print, exec, grim -g \"$(slurp)\" - | wl-copy && wl-paste > ~/Pictures/Screenshot-$(date +%F_%T).png | dunstify \"Screenshot of the region taken\" -t 1000"
+                    "SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshot-$(date +%F_%T).png | dunstify \"Screenshot of whole screen taken\" -t 1000"
                 ];
 
                 # Mouse binds

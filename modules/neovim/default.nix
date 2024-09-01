@@ -101,7 +101,14 @@ in {
                         rust-analyzer.enable = true;
                         html.enable = true;
                         typst-lsp.enable = true;
+                        # leanls.enable = true; # Error with rust version
                     };
+                };
+
+                treesitter = {
+                    enable  = true;
+
+                    indent  = true;
                 };
 
                 #luasnip.enable = true;
@@ -201,6 +208,11 @@ in {
                     pdfViewer = "zathura";
                     keymaps.watch = "<leader>l";
                     keymaps.silent = true;
+                };
+
+                # Lean - Theorem Prover
+                lean = {
+                    enable = true;
                 };
 
                 #hardtime.enable = true; # Learn vim commands

@@ -95,16 +95,13 @@ in {
         firefox             # Browser
         discord             # Messaging
         obsidian            # Notes
-        # dropbox             # Cloud Storage
         whatsapp-for-linux  # Messaging
-        gimp                # pdf/img editor
+        inkscape
         unityhub
-        # zoom-us           # Not stable
         obs-studio          # Screen Recorder
         jellyfin-ffmpeg     # File converter and Video Player
         # libsForQt5.kdenlive # Video Editor
-        # godot_4
-        krita
+        godot_4
 
         # Gaming
         mangohud            # FPS and System status
@@ -117,12 +114,13 @@ in {
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
         typst               # Out-of-editor compiler for typst
+        lean4               # Lean4 - Theorem Prover
 
         neofetch            # System info
         nnn                 # terminal file manager
         pywal               # Generate color palettes
 
-        # For Hyprland
+        # For Hyprland/General
         alacritty           # Terminal Emulator
         waybar              # Bar Widgets
         dunst               # Notif daemon
@@ -130,6 +128,12 @@ in {
         rofi-wayland        # App manager
         xfce.thunar         # File Manager
         wl-clipboard        # Clipboard tool for nvim
+        slurp               # Region Selector
+        grim                # Image Grabber
+        vlc                 # Media Player
+        # mpv                 # Media Player
+        swappy              # Image Viewer/Editor
+
 
         # archives
         zip
@@ -153,7 +157,7 @@ in {
         #ldns # replacement of `dig`, it provide the command `drill`
         #aria2 # A lightweight multi-protocol & multi-source command-line download utility
         bluez # Bluetooth
-        networkmanagerapplet
+        # networkmanagerapplet
 
         socat # replacement of openbsd-netcat
         nmap # A utility for network discovery and security auditing

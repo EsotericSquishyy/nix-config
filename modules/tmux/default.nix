@@ -1,5 +1,18 @@
 # TMUX - Terminal Multiplexer
-{ pkgs, lib, config, ...}: {
+{ pkgs, lib, config, ...}: 
+let
+    powerline = pkgs.tmuxPlugins.mkTmuxPlugin {
+        pluginName = "powerline";
+        version = "06-27-24";
+        src = pkgs.fetchFromGitHub {
+            owner = "erikw";
+            repo = "tmux-powerline";
+            rev = "6aea97f0da6fcbf961ade75ccf2d63083f818540";
+            sha256 = "sha256-mmmmnlPzzs5oDxLWPthWrYqiy8s2Kn9L2A48Bc8lZxw=";
+        };
+    };
+
+in {
 
     options.tmuxModule = {
         enable = lib.mkEnableOption "enables tmuxModule";
@@ -19,7 +32,7 @@
             baseIndex = 1;
 
             plugins = with pkgs.tmuxPlugins; [
-
+                powerline
             ];
 
             extraConfig = ''
