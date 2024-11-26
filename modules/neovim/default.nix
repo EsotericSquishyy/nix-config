@@ -54,7 +54,10 @@ in {
                     base0F = "#${base0F}";
                 };
             };
-            globals.mapleader = " ";
+            globals = {
+                mapleader = " ";
+                maplocalleader = "\\";
+            };
 
             options = {
                 termguicolors = true;
@@ -89,6 +92,7 @@ in {
                     enable = true;
 
                     servers = {
+                        gdscript.enable = true;
                         tsserver.enable = true;
 
                         lua-ls = {
@@ -192,6 +196,7 @@ in {
                         "<leader>o".action = "find_files"; # Files
                         "<leader>p".action = "builtin"; # Current dir
                         "<leader>i".action = "live_grep"; # Current dir
+                        "<leader>u".action = "buffers"; # Open buffers
                         "<leader>h".action = "help_tags"; # Vim man
                     };
                 };
@@ -200,6 +205,20 @@ in {
                 vimtex = {
                     enable = true;
                     viewMethod =  "zathura";
+                    settings = {
+                        quickfix_ignore_filters = [
+                            "Underfull"
+                            "Overfull"
+                            "specifier changed to"
+                            "Token not allowed in a PDF string"
+                        ];
+                        # https://github.com/lervag/vimtex/issues/2046
+                        # extraConfig = ''
+                        #     function vimtex.viewer.xdo_find_win_id_by_pid(pid)
+                        #         return 1
+                        #     end
+                        # '';
+                    };
                 };
 
                 # Typst
@@ -213,6 +232,7 @@ in {
                 # Lean - Theorem Prover
                 lean = {
                     enable = true;
+                    mappings = true;
                 };
 
                 #hardtime.enable = true; # Learn vim commands

@@ -201,8 +201,8 @@ in
                     "$mainMod, mouse_up, workspace, e-1"
 
                     # screenshot 
-                    ", Print, exec, grim -g \"$(slurp)\" - | wl-copy && wl-paste > ~/Pictures/Screenshot-$(date +%F_%T).png | dunstify \"Screenshot of the region taken\" -t 1000"
-                    "SHIFT, Print, exec, grim - | wl-copy && wl-paste > ~/Pictures/Screenshot-$(date +%F_%T).png | dunstify \"Screenshot of whole screen taken\" -t 1000"
+                    ", print, exec, grim -g \"$(slurp)\" $HOME/Pictures/Screenshot-$(date +'%s_grim.png') | dunstify \"Screenshot of the region taken\" -t 1000"
+                    "CTRL, print, exec, grim $HOME/Pictures/Screenshot-$(date +'%s_grim.png') | dunstify \"Screenshot of whole screen taken\" -t 1000"
                 ];
 
                 # Mouse binds

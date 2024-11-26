@@ -93,6 +93,7 @@ in {
     home.packages = (with pkgs; [
         # Applications
         firefox             # Browser
+        ungoogled-chromium  # Browser
         discord             # Messaging
         obsidian            # Notes
         whatsapp-for-linux  # Messaging
@@ -105,9 +106,9 @@ in {
 
         # Gaming
         mangohud            # FPS and System status
-        # protonup            # Proton Updater
         # lutris              # Game Launcher
-        protonup-qt
+        protonup-qt         # Proton-GE manager
+        # protontricks        # wintricks commands for proton
 
         # Toolchains/Compilers/etc.
         nodejs_22           # node.js
@@ -149,6 +150,8 @@ in {
         fzf # A command-line fuzzy finder
         zoxide
         sage # calculator
+        imagemagick # Image compressor/converter
+        toybox
 
         # networking tools
         mtr # A network diagnostic tool

@@ -100,19 +100,22 @@
                         pandas
                         numpy
                         matplotlib
-                        sklearn-deap
+                        # torch
+                        flask
+                        flask-limiter
+                        # sklearn-deap
                         tensorflow
                         keras
 
-                        (buildPythonPackage rec {
-                            pname = "pyrtl";
-                            version = "0.10.2";
-                            src = fetchPypi {
-                                inherit pname version;
-                                sha256 = "sha256-Ji2EAe/tI4hQ+n8EMm+uBkCjzXi+fSv+m17EeQ0Zysg=";
-                            };
-                            doCheck = false;
-                        })
+                        # (buildPythonPackage rec {
+                        #     pname = "pyrtl";
+                        #     version = "0.10.2";
+                        #     src = fetchPypi {
+                        #         inherit pname version;
+                        #         sha256 = "sha256-Ji2EAe/tI4hQ+n8EMm+uBkCjzXi+fSv+m17EeQ0Zysg=";
+                        #     };
+                        #     doCheck = false;
+                        # })
                     ]))
                 ];
             };
