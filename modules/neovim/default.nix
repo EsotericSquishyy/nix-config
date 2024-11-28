@@ -22,6 +22,7 @@ in {
 
         home.packages = with pkgs; [
             ripgrep # Telescope
+            lazygit
             zathura # LaTeX
             texliveFull # LaTeX
         ];
@@ -115,6 +116,8 @@ in {
                     indent  = true;
                 };
 
+                tmux-navigator.enable = true;
+
                 #luasnip.enable = true;
 
                 # Autocomplete
@@ -163,6 +166,12 @@ in {
 
                 # Color Picker
                 nvim-colorizer.enable = true;
+
+                # Lazygit
+                lazygit = {
+                    enable = true;
+
+                };
 
                 # Explorer
                 nvim-tree = {
@@ -225,7 +234,7 @@ in {
                 typst-vim = {
                     enable = true;
                     pdfViewer = "zathura";
-                    keymaps.watch = "<leader>l";
+                    keymaps.watch = "<leader>w";
                     keymaps.silent = true;
                 };
 
@@ -242,25 +251,33 @@ in {
 
             keymaps = [
                 # Change splits with 'CTRL + [hjkl]'
+                # tmux-navigator takes care of this
+                # {
+                #     action = ":wincmd h<CR>";
+                #     key = "<C-h>";
+                #     options.silent = true;
+                # }
+                # {
+                #     action = ":wincmd j<CR>";
+                #     key = "<C-j>";
+                #     options.silent = true;
+                # }
+                # {
+                #     action = ":wincmd k<CR>";
+                #     key = "<C-k>";
+                #     options.silent = true;
+                # }
+                # {
+                #     action = ":wincmd l<CR>";
+                #     key = "<C-l>";
+                #     options.silent = true;
+                # }
+
+                # Lazygit binds
                 {
-                    action = ":wincmd h<CR>";
-                    key = "<C-h>";
-                    options.silent = true;
-                }
-                {
-                    action = ":wincmd j<CR>";
-                    key = "<C-j>";
-                    options.silent = true;
-                }
-                {
-                    action = ":wincmd k<CR>";
-                    key = "<C-k>";
-                    options.silent = true;
-                }
-                {
-                    action = ":wincmd l<CR>";
-                    key = "<C-l>";
-                    options.silent = true;
+                    action = ":LazyGit<CR>";
+                    key = "<leader>l";
+                    options.silent = false;
                 }
 
                 # NvimTree binds

@@ -103,6 +103,7 @@ in {
         jellyfin-ffmpeg     # File converter and Video Player
         # libsForQt5.kdenlive # Video Editor
         godot_4
+        lazygit
 
         # Gaming
         mangohud            # FPS and System status
@@ -133,7 +134,7 @@ in {
         grim                # Image Grabber
         vlc                 # Media Player
         # mpv                 # Media Player
-        swappy              # Image Viewer/Editor
+        qview               # Image viewer
 
 
         # archives
@@ -143,9 +144,7 @@ in {
         p7zip
 
         # utils
-        #ripgrep # recursively searches directories for a regex pattern
-        #jq # A lightweight and flexible command-line JSON processor
-        #yq-go # yaml processor https://github.com/mikefarah/yq
+        ripgrep # recursively searches directories for a regex pattern
         eza # A modern replacement for ‘ls’
         fzf # A command-line fuzzy finder
         zoxide
@@ -155,10 +154,6 @@ in {
 
         # networking tools
         mtr # A network diagnostic tool
-        #iperf3
-        #dnsutils  # `dig` + `nslookup`
-        #ldns # replacement of `dig`, it provide the command `drill`
-        #aria2 # A lightweight multi-protocol & multi-source command-line download utility
         bluez # Bluetooth
         # networkmanagerapplet
 
@@ -167,18 +162,11 @@ in {
         ipcalc  # it is a calculator for the IPv4/v6 addresses
 
         # misc
-        #cowsay
         file
         which
         tree
-        #gnused
-        #gnutar
-        #gawk
-        #zstd
-        #gnupg
 
         # productivity
-        #hugo # static site generator
         glow # markdown previewer in terminal
 
         # system monitors
@@ -191,16 +179,12 @@ in {
 
         # system call monitoring
         #strace # system call monitoring
-        #ltrace # library call monitoring
+        ltrace # library call monitoring
         #lsof # list open files
 
         # system tools
         wlogout # Logout menu
         #sysstat
-        #lm_sensors # for `sensors` command
-        #ethtool
-        #pciutils # lspci
-        #usbutils # lsusb
 
         # Fonts
         font-awesome

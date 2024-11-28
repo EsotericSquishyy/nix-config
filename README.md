@@ -7,4 +7,6 @@
 
 ### To-Do
  - Fix VimTeX compiling
- - Better REAME lol
+ - Better README lol
+ - Git workflow
+ - Tmux workflow
