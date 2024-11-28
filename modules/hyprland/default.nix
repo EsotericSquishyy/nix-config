@@ -61,7 +61,7 @@ in
                 decoration = with config.colorScheme.palette; {
                     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-                    rounding = 1; #10
+                    rounding = 0; #10
 
                     blur = {
                         enabled     = true;

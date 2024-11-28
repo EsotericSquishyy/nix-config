@@ -43,7 +43,7 @@ in {
                 # Resizing
                 bind -r h resize-pane -L 5
                 bind -r j resize-pane -D 5
-                bind -r k resize-pane -K 5
+                bind -r k resize-pane -U 5
                 bind -r l resize-pane -R 5
 
                 # https://github.com/christoomey/vim-tmux-navigator/issues/317#issuecomment-2483129754
