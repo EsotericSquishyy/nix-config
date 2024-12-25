@@ -32,10 +32,10 @@ in {
             viAlias = true;
             vimAlias = true;
             defaultEditor = true;
-            colorschemes.onedark.enable = true;
+            # colorschemes.onedark.enable = true;
             colorschemes.base16 = {
                 enable = true;
-                customColorScheme = with config.colorScheme.palette; {
+                colorscheme = with config.colorScheme.palette; {
                     base00 = "#${base00}";
                     base01 = "#${base01}";
                     base02 = "#${base02}";
@@ -87,6 +87,14 @@ in {
             };
 
             plugins = {
+                # Dependency
+                web-devicons.enable = true;
+                # mini = {
+                #     enable = true;
+                #     modules.icons = true;
+                #     mockDevIcons = true;
+                # };
+
                 # Language Server
                 lsp = {
                     enable = true;
@@ -96,29 +104,38 @@ in {
                             enable = true;
                             package = null;
                         };
-                        tsserver.enable = true;
+                        ts_ls.enable = true;
 
-                        lua-ls = {
+                        lua_ls = {
                           enable = true;
                           settings.telemetry.enable = false;
                         };
                         pyright.enable = true;
                         nil_ls.enable = true;
                         clangd.enable = true;
-                        rust-analyzer.enable = true;
+                        rust_analyzer = {
+                            enable = true;
+                            installCargo = true;
+                            installRustc = true;
+                        };
                         html.enable = true;
-                        typst-lsp.enable = true;
+                        typst_lsp.enable = true;
                         # leanls.enable = true; # Error with rust version
                     };
                 };
 
                 treesitter = {
-                    enable  = true;
+                    enable = true;
 
-                    indent  = true;
+                    settings.indent.enable = true;
                 };
 
                 tmux-navigator.enable = true;
+
+                transparent = {
+                    enable = true;
+                    settings.enable = true;
+                };
 
                 #luasnip.enable = true;
 
@@ -147,23 +164,27 @@ in {
                 # Buffer Bar
                 bufferline = {
                     enable = true;
-                    numbers = "none";
-                    mode = "tabs"; # Tabs represent tabs, not buffers
-                    showBufferCloseIcons = false;
-                    showBufferIcons = false;
-                    showCloseIcon = false;
-                    highlights = {
-                        fill.bg             = "none"; # Bar bg
-                        background.bg       = "none"; # Unselected tab bg
-                        bufferSelected.bg   = "none"; # Selected tab bg
-                        separator.bg        = "none"; # Separator bg
+                    settings = {
+                        options = {
+                            numbers = "none";
+                            mode = "tabs"; # Tabs represent tabs, not buffers
+                            show_buffer_close_icons = false;
+                            show_buffer_icons = false;
+                            show_close_icon = false;
+                        };
+                        highlights = {
+                            fill.bg             = "none"; # Bar bg
+                            background.bg       = "none"; # Unselected tab bg
+                            buffer_selected.bg  = "none"; # Selected tab bg
+                            separator.bg        = "none"; # Separator bg
+                        };
                     };
                 };
 
                 # Status Bar
                 lualine = {
                     enable = true;
-                    globalstatus = true; # Avoid split problems (Nvim 0.7+)
+                    settings.options.globalstatus = true; # Avoid split problems (Nvim 0.7+)
                 };
 
                 # Color Picker
@@ -215,7 +236,7 @@ in {
                 # LaTeX
                 vimtex = {
                     enable = true;
-                    viewMethod =  "zathura";
+                    settings.view_method =  "zathura";
                     settings = {
                         quickfix_ignore_filters = [
                             "Underfull"
@@ -235,7 +256,7 @@ in {
                 # Typst
                 typst-vim = {
                     enable = true;
-                    pdfViewer = "zathura";
+                    settings.pdf_viewer = "zathura";
                     keymaps.watch = "<leader>w";
                     keymaps.silent = true;
                 };
@@ -310,17 +331,9 @@ in {
             ];
 
             # Manual Lua Config
-            extraConfigLua = ''
-                vim.cmd([[
-                    hi Normal ctermbg=none guibg=none
-                    hi NormalNC ctermbg=none guibg=none
-                    hi NonText ctermbg=none guibg=none
-                    hi LineNr ctermbg=none guibg=none
-                ]])
-            '';
+            # extraConfigLua = ''
+            # '';
         };
-
         #programs.nvim = {};
     };
-
 }

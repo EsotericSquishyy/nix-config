@@ -81,8 +81,8 @@
     # Enable the X11 windowing system.
     services.xserver = {
         enable = true;
-        layout = "us";
-        xkbVariant = "";
+        xkb.layout = "us";
+        xkb.variant = "";
 
         displayManager.gdm.enable = true;
         displayManager.gdm.wayland = true;
@@ -174,9 +174,7 @@
     };
 
     # For gaming, not needed with steam
-    hardware.opengl = {
-        enable = true;
-    };
+    hardware.graphics.enable = true;
     programs.steam = {
         enable = true;
         gamescopeSession.enable = true;
