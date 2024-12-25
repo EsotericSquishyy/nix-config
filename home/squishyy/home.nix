@@ -95,6 +95,7 @@ in {
         firefox             # Browser
         ungoogled-chromium  # Browser
         discord             # Messaging
+        # xwaylandvideobridge # Fix for discord screen-sharing
         obsidian            # Notes
         whatsapp-for-linux  # Messaging
         inkscape
@@ -104,6 +105,8 @@ in {
         # libsForQt5.kdenlive # Video Editor
         godot_4
         lazygit
+        openvpn
+        usbimager
 
         # Gaming
         mangohud            # FPS and System status
@@ -150,7 +153,7 @@ in {
         zoxide
         sage # calculator
         imagemagick # Image compressor/converter
-        toybox
+        radare2
 
         # networking tools
         mtr # A network diagnostic tool
@@ -165,6 +168,8 @@ in {
         file
         which
         tree
+        bat
+        wget
 
         # productivity
         glow # markdown previewer in terminal

@@ -100,6 +100,7 @@
                         pandas
                         numpy
                         matplotlib
+                        pwntools
                         # torch
                         flask
                         flask-limiter
