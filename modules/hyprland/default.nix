@@ -61,7 +61,7 @@ in
                 decoration = with config.colorScheme.palette; {
                     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-                    rounding = 10;
+                    rounding = 0; #10
 
                     blur = {
                         enabled     = true;
@@ -175,6 +175,8 @@ in
                     "$mainMod, 8, workspace, 8"
                     "$mainMod, 9, workspace, 9"
                     "$mainMod, 0, workspace, 10"
+                    "$mainMod, COMMA, workspace, -1"
+                    "$mainMod, PERIOD, workspace, +1"
 
                     # Move active window to a workspace with mainMod + SHIFT + [0-9]
                     "$mainMod SHIFT, 1, movetoworkspace, 1"
@@ -187,6 +189,8 @@ in
                     "$mainMod SHIFT, 8, movetoworkspace, 8"
                     "$mainMod SHIFT, 9, movetoworkspace, 9"
                     "$mainMod SHIFT, 0, movetoworkspace, 10"
+                    "$mainMod SHIFT, COMMA, movetoworkspace, -1"
+                    "$mainMod SHIFT, PERIOD, movetoworkspace, +1"
 
                     # Example special workspace (scratchpad)
                     "$mainMod, S, togglespecialworkspace, magic"
@@ -195,6 +199,10 @@ in
                     # Scroll through existing workspaces with mainMod + scroll
                     "$mainMod, mouse_down, workspace, e+1"
                     "$mainMod, mouse_up, workspace, e-1"
+
+                    # screenshot 
+                    ", print, exec, grim -g \"$(slurp)\" $HOME/Pictures/Screenshot-$(date +'%s_grim.png') | dunstify \"Screenshot of the region taken\" -t 1000"
+                    "CTRL, print, exec, grim $HOME/Pictures/Screenshot-$(date +'%s_grim.png') | dunstify \"Screenshot of whole screen taken\" -t 1000"
                 ];
 
                 # Mouse binds

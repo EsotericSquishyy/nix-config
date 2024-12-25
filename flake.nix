@@ -3,12 +3,12 @@
 
     inputs = {
         # Nixpkgs
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
         # Home manager
         home-manager = {
-            url = "github:nix-community/home-manager/release-23.11";
+            url = "github:nix-community/home-manager/release-24.05";
             # url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
@@ -16,8 +16,8 @@
         hyprland.url = "github:hyprwm/Hyprland";
 
         nixvim = {
-            url = "github:nix-community/nixvim/nixos-23.11";
-            #url = "github:nix-community/nixvim";
+            url = "github:nix-community/nixvim/nixos-24.05"; # Branch doesn't exist yet
+            # url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -100,19 +100,23 @@
                         pandas
                         numpy
                         matplotlib
-                        sklearn-deap
+                        pwntools
+                        # torch
+                        flask
+                        flask-limiter
+                        # sklearn-deap
                         tensorflow
                         keras
 
-                        (buildPythonPackage rec {
-                            pname = "pyrtl";
-                            version = "0.10.2";
-                            src = fetchPypi {
-                                inherit pname version;
-                                sha256 = "sha256-Ji2EAe/tI4hQ+n8EMm+uBkCjzXi+fSv+m17EeQ0Zysg=";
-                            };
-                            doCheck = false;
-                        })
+                        # (buildPythonPackage rec {
+                        #     pname = "pyrtl";
+                        #     version = "0.10.2";
+                        #     src = fetchPypi {
+                        #         inherit pname version;
+                        #         sha256 = "sha256-Ji2EAe/tI4hQ+n8EMm+uBkCjzXi+fSv+m17EeQ0Zysg=";
+                        #     };
+                        #     doCheck = false;
+                        # })
                     ]))
                 ];
             };

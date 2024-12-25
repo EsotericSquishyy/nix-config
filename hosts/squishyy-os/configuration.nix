@@ -180,8 +180,10 @@
         driSupport = true;
         driSupport32Bit = true;
     };
-    programs.steam.enable = true;
-    programs.steam.gamescopeSession.enable = true;
+    programs.steam = {
+        enable = true;
+        gamescopeSession.enable = true;
+    };
     programs.gamemode.enable = true;
 
     # Executables (Can also use 'steam-run zsh' to get shell)
@@ -190,5 +192,5 @@
 
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    system.stateVersion = "23.11";
+    system.stateVersion = "24.05";
 }

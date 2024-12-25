@@ -13,7 +13,6 @@
                 env.TERM = "alacritty";
                 font = {
                     size = 15;
-                    draw_bold_text_with_bright_colors = true;
                     normal = {
                         family = "Mononoki Nerd Font";
                         style = "Regular";
@@ -41,6 +40,7 @@
                     decorations = "None";
                 };
                 colors = with config.colorScheme.palette; {
+                    draw_bold_text_with_bright_colors = true;
                     primary = {
                         foreground = "0x${base07}";
                         background = "0x${base00}";

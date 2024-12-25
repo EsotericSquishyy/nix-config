@@ -93,36 +93,39 @@ in {
     home.packages = (with pkgs; [
         # Applications
         firefox             # Browser
+        ungoogled-chromium  # Browser
         discord             # Messaging
+        # xwaylandvideobridge # Fix for discord screen-sharing
         obsidian            # Notes
-        # dropbox             # Cloud Storage
         whatsapp-for-linux  # Messaging
-        gimp                # pdf/img editor
+        inkscape
         unityhub
-        # zoom-us           # Not stable
         obs-studio          # Screen Recorder
         jellyfin-ffmpeg     # File converter and Video Player
         # libsForQt5.kdenlive # Video Editor
-        # godot_4
-        krita
+        godot_4
+        lazygit
+        openvpn
+        usbimager
 
         # Gaming
         mangohud            # FPS and System status
-        # protonup            # Proton Updater
         # lutris              # Game Launcher
-        protonup-qt
+        protonup-qt         # Proton-GE manager
+        # protontricks        # wintricks commands for proton
 
         # Toolchains/Compilers/etc.
-        nodejs_21           # node.js
+        nodejs_22           # node.js
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
         typst               # Out-of-editor compiler for typst
+        lean4               # Lean4 - Theorem Prover
 
         neofetch            # System info
         nnn                 # terminal file manager
         pywal               # Generate color palettes
 
-        # For Hyprland
+        # For Hyprland/General
         alacritty           # Terminal Emulator
         waybar              # Bar Widgets
         dunst               # Notif daemon
@@ -130,6 +133,12 @@ in {
         rofi-wayland        # App manager
         xfce.thunar         # File Manager
         wl-clipboard        # Clipboard tool for nvim
+        slurp               # Region Selector
+        grim                # Image Grabber
+        vlc                 # Media Player
+        # mpv                 # Media Player
+        qview               # Image viewer
+
 
         # archives
         zip
@@ -138,40 +147,31 @@ in {
         p7zip
 
         # utils
-        #ripgrep # recursively searches directories for a regex pattern
-        #jq # A lightweight and flexible command-line JSON processor
-        #yq-go # yaml processor https://github.com/mikefarah/yq
+        ripgrep # recursively searches directories for a regex pattern
         eza # A modern replacement for ‘ls’
         fzf # A command-line fuzzy finder
         zoxide
         sage # calculator
+        imagemagick # Image compressor/converter
+        radare2
 
         # networking tools
         mtr # A network diagnostic tool
-        #iperf3
-        #dnsutils  # `dig` + `nslookup`
-        #ldns # replacement of `dig`, it provide the command `drill`
-        #aria2 # A lightweight multi-protocol & multi-source command-line download utility
         bluez # Bluetooth
-        networkmanagerapplet
+        # networkmanagerapplet
 
         socat # replacement of openbsd-netcat
         nmap # A utility for network discovery and security auditing
         ipcalc  # it is a calculator for the IPv4/v6 addresses
 
         # misc
-        #cowsay
         file
         which
         tree
-        #gnused
-        #gnutar
-        #gawk
-        #zstd
-        #gnupg
+        bat
+        wget
 
         # productivity
-        #hugo # static site generator
         glow # markdown previewer in terminal
 
         # system monitors
@@ -184,16 +184,12 @@ in {
 
         # system call monitoring
         #strace # system call monitoring
-        #ltrace # library call monitoring
+        ltrace # library call monitoring
         #lsof # list open files
 
         # system tools
         wlogout # Logout menu
         #sysstat
-        #lm_sensors # for `sensors` command
-        #ethtool
-        #pciutils # lspci
-        #usbutils # lsusb
 
         # Fonts
         font-awesome
@@ -256,5 +252,5 @@ in {
     systemd.user.startServices = "sd-switch";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "23.11";
+    home.stateVersion = "24.05";
 }

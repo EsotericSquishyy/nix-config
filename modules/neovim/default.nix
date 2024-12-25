@@ -22,8 +22,9 @@ in {
 
         home.packages = with pkgs; [
             ripgrep # Telescope
+            lazygit
             zathura # LaTeX
-            texliveMedium # LaTeX
+            texliveFull # LaTeX
         ];
 
         # https://nix-community.github.io/nixvim/
@@ -31,6 +32,7 @@ in {
             enable = true;
             viAlias = true;
             vimAlias = true;
+            defaultEditor = true;
             #colorschemes.onedark.enable = true;
             colorschemes.base16 = {
                 enable = true;
@@ -53,12 +55,16 @@ in {
                     base0F = "#${base0F}";
                 };
             };
-            globals.mapleader = " ";
+            globals = {
+                mapleader = " ";
+                maplocalleader = "\\";
+            };
 
             options = {
                 termguicolors = true;
                 syntax = "on";
                 number = true; # Show line numbers
+                relativenumber = true;
 
                 expandtab = true; # spaces for tabs, 'retab'
                 shiftwidth = 4; # Indentation of '>>' or '<<'
@@ -87,6 +93,7 @@ in {
                     enable = true;
 
                     servers = {
+                        gdscript.enable = true;
                         tsserver.enable = true;
 
                         lua-ls = {
@@ -99,15 +106,24 @@ in {
                         rust-analyzer.enable = true;
                         html.enable = true;
                         typst-lsp.enable = true;
+                        # leanls.enable = true; # Error with rust version
                     };
                 };
+
+                treesitter = {
+                    enable  = true;
+
+                    indent  = true;
+                };
+
+                tmux-navigator.enable = true;
 
                 #luasnip.enable = true;
 
                 # Autocomplete
-                nvim-cmp = {
+                cmp = {
                     enable = true;
-                    mapping = {
+                    settings.mapping = {
                         "<C-Space>" = "cmp.mapping.complete()";
                         "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
                         "<C-e>"     = "cmp.mapping.close()";
@@ -117,12 +133,13 @@ in {
                         "<Tab>"     = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
                     };
                     autoEnableSources = true;
-                    sources = [
+                    settings.sources = [
                         { name = "nvim_lsp"; }
                         #{ name = "luasnip"; }
                         { name = "buffer"; }
                         { name = "path"; }
                     ];
+
                 };
 
                 # Buffer Bar
@@ -149,6 +166,12 @@ in {
 
                 # Color Picker
                 nvim-colorizer.enable = true;
+
+                # Lazygit
+                lazygit = {
+                    enable = true;
+
+                };
 
                 # Explorer
                 nvim-tree = {
@@ -182,6 +205,7 @@ in {
                         "<leader>o".action = "find_files"; # Files
                         "<leader>p".action = "builtin"; # Current dir
                         "<leader>i".action = "live_grep"; # Current dir
+                        "<leader>u".action = "buffers"; # Open buffers
                         "<leader>h".action = "help_tags"; # Vim man
                     };
                 };
@@ -190,14 +214,34 @@ in {
                 vimtex = {
                     enable = true;
                     viewMethod =  "zathura";
+                    settings = {
+                        quickfix_ignore_filters = [
+                            "Underfull"
+                            "Overfull"
+                            "specifier changed to"
+                            "Token not allowed in a PDF string"
+                        ];
+                        # https://github.com/lervag/vimtex/issues/2046
+                        # extraConfig = ''
+                        #     function vimtex.viewer.xdo_find_win_id_by_pid(pid)
+                        #         return 1
+                        #     end
+                        # '';
+                    };
                 };
 
                 # Typst
                 typst-vim = {
                     enable = true;
                     pdfViewer = "zathura";
-                    keymaps.watch = "<leader>l";
+                    keymaps.watch = "<leader>w";
                     keymaps.silent = true;
+                };
+
+                # Lean - Theorem Prover
+                lean = {
+                    enable = true;
+                    mappings = true;
                 };
 
                 #hardtime.enable = true; # Learn vim commands
@@ -207,25 +251,33 @@ in {
 
             keymaps = [
                 # Change splits with 'CTRL + [hjkl]'
+                # tmux-navigator takes care of this
+                # {
+                #     action = ":wincmd h<CR>";
+                #     key = "<C-h>";
+                #     options.silent = true;
+                # }
+                # {
+                #     action = ":wincmd j<CR>";
+                #     key = "<C-j>";
+                #     options.silent = true;
+                # }
+                # {
+                #     action = ":wincmd k<CR>";
+                #     key = "<C-k>";
+                #     options.silent = true;
+                # }
+                # {
+                #     action = ":wincmd l<CR>";
+                #     key = "<C-l>";
+                #     options.silent = true;
+                # }
+
+                # Lazygit binds
                 {
-                    action = ":wincmd h<CR>";
-                    key = "<C-h>";
-                    options.silent = true;
-                }
-                {
-                    action = ":wincmd j<CR>";
-                    key = "<C-j>";
-                    options.silent = true;
-                }
-                {
-                    action = ":wincmd k<CR>";
-                    key = "<C-k>";
-                    options.silent = true;
-                }
-                {
-                    action = ":wincmd l<CR>";
-                    key = "<C-l>";
-                    options.silent = true;
+                    action = ":LazyGit<CR>";
+                    key = "<leader>l";
+                    options.silent = false;
                 }
 
                 # NvimTree binds
