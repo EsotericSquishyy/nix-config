@@ -126,7 +126,6 @@
     };
 
     # Enable sound with pipewire.
-    sound.enable = true;
     hardware.pulseaudio = {
         enable = false;
         extraConfig = "";
@@ -177,8 +176,6 @@
     # For gaming, not needed with steam
     hardware.opengl = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
     };
     programs.steam = {
         enable = true;
@@ -192,5 +189,5 @@
 
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    system.stateVersion = "24.05";
+    system.stateVersion = "24.11";
 }

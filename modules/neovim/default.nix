@@ -14,7 +14,6 @@ let
         };
     };
 in {
-
     options.neovimModule = {
         enable = lib.mkEnableOption "enables neovimModule";
     };
@@ -33,7 +32,7 @@ in {
             viAlias = true;
             vimAlias = true;
             defaultEditor = true;
-            #colorschemes.onedark.enable = true;
+            colorschemes.onedark.enable = true;
             colorschemes.base16 = {
                 enable = true;
                 customColorScheme = with config.colorScheme.palette; {
@@ -60,7 +59,7 @@ in {
                 maplocalleader = "\\";
             };
 
-            options = {
+            opts = {
                 termguicolors = true;
                 syntax = "on";
                 number = true; # Show line numbers
@@ -93,7 +92,10 @@ in {
                     enable = true;
 
                     servers = {
-                        gdscript.enable = true;
+                        gdscript = {
+                            enable = true;
+                            package = null;
+                        };
                         tsserver.enable = true;
 
                         lua-ls = {
