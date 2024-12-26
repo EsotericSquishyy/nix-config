@@ -24,6 +24,7 @@ in
 
                 env = [
                     "XCURSOR_SIZE,24"
+                    "HYPRCURSOR_SIZE,24"
                     "QT_QPA_PLATFORMTHEME,qt5ct"
                 ];
 
@@ -71,10 +72,12 @@ in
                         new_optimizations = true;
                     };
 
-                    drop_shadow     = true;
-                    shadow_range    = 4;
-                    shadow_render_power = 3;
-                    "col.shadow"    = "rgba(1a1a1aee)";
+                    shadow = {
+                        enabled         = true;
+                        range           = 4;
+                        render_power    = 3;
+                        color           = "rgba(1a1a1aee)";
+                    };
                 };
 
                 animations = {
@@ -100,10 +103,10 @@ in
                     preserve_split  = true; # you probably want this
                 };
 
-                master = {
-                    # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-                    new_is_master = true;
-                };
+                # master = {
+                #     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+                #     new_is_master = true;
+                # };
 
                 gestures = {
                     # See https://wiki.hyprland.org/Configuring/Variables/ for more

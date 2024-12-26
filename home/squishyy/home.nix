@@ -223,6 +223,12 @@ in {
         };
     };
 
+    home.pointerCursor = {
+        gtk.enable = true;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 24;
+    };
     gtk = {
         enable = true;
         theme = {
@@ -232,13 +238,6 @@ in {
         iconTheme = {
             package = pkgs.zafiro-icons;
             name = "Zafiro-icons-Dark";
-        };
-        cursorTheme = {
-            /* package = pkgs.graphite-cursors;
-            name = "graphite-dark"; */
-            package = pkgs.bibata-cursors;
-            name = "Bibate-Modern-Ice";
-            size = 17;
         };
     };
 

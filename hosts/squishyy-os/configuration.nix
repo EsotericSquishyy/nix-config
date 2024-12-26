@@ -79,15 +79,27 @@
     };
 
     # Enable the X11 windowing system.
-    services.xserver = {
+    # services.xserver = {
+    #     enable = true;
+    #     xkb.layout = "us";
+    #     xkb.variant = "";
+    #
+    #     displayManager.gdm.enable = true;
+    #     displayManager.gdm.wayland = true;
+    # };
+    services.greetd = {
         enable = true;
-        xkb.layout = "us";
-        xkb.variant = "";
-
-        displayManager.gdm.enable = true;
-        displayManager.gdm.wayland = true;
-        # displayManager.sddm.enable = true;
-        # displayManager.sddm.theme = "${import ../../theme/sddm-theme.nix {inherit pkgs;}}";
+        settings = {
+            default_session = {
+                command = ''${pkgs.greetd.tuigreet}/bin/tuigreet \
+                    --remember \
+                    --remember-session \
+                    --asterisks \
+                    --time
+                '';
+                user = "squishyy";
+            };
+        };
     };
     services.keyd = {
         # https://github.com/rvaiya/keyd
@@ -174,7 +186,10 @@
     };
 
     # For gaming, not needed with steam
-    hardware.graphics.enable = true;
+    hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+    };
     programs.steam = {
         enable = true;
         gamescopeSession.enable = true;
