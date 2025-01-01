@@ -13,6 +13,7 @@ let
             hash = "sha256-wT+7rmp08r0XYGp+MhjJX8dsFTar8+nf10CV9OdkOSk=";
         };
     };
+    helpers = config.lib.nixvim;
 in {
     options.neovimModule = {
         enable = lib.mkEnableOption "enables neovimModule";
@@ -72,10 +73,10 @@ in {
                 autoindent = true;
 
                 list = true;
-                listchars = ''eol:↵,trail:~,tab:>-,nbsp:␣''; # chars for invisible chars
+                listchars = ''trail:~,tab:>-,nbsp:␣''; # chars for invisible chars (removed: eol = "↵")
 
-                wildmenu = true;
-                wildmode = "list:longest";
+                # wildmenu = true;
+                # wildmode = "list:longest";
                 # wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx";
 
                 signcolumn = "number"; # Prevent shifting from lsp warnings
@@ -137,29 +138,84 @@ in {
                     settings.enable = true;
                 };
 
-                #luasnip.enable = true;
-
-                # Autocomplete
-                cmp = {
+                # friendly-snippets.enable = true;
+                luasnip = {
                     enable = true;
-                    settings.mapping = {
-                        "<C-Space>" = "cmp.mapping.complete()";
-                        "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
-                        "<C-e>"     = "cmp.mapping.close()";
-                        "<C-f>"     = "cmp.mapping.scroll_docs(4)";
-                        "<CR>"      = "cmp.mapping.confirm({ select = true })";
-                        "<S-Tab>"   = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-                        "<Tab>"     = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-                    };
-                    autoEnableSources = true;
-                    settings.sources = [
-                        { name = "nvim_lsp"; }
-                        #{ name = "luasnip"; }
-                        { name = "buffer"; }
-                        { name = "path"; }
+                    fromLua = [
+                        {}
+                        {
+                            paths = ./snippets;
+                            include = [ "nix" ];
+                        }
                     ];
-
+                    fromSnipmate = [ {} ];
+                    fromVscode = [ {} ];
                 };
+
+                # Blink - https://cmp.saghen.dev/
+                blink-cmp = {
+                    enable = true;
+                    settings = {
+                        keymap.preset = "super-tab";
+                        windows.documentation.auto_show = true;
+                        snippets = {
+                            expand = helpers.mkRaw ''
+                                function(snippet)
+                                    require('luasnip').lsp_expand(snippet)
+                                end
+                            '';
+                            active = helpers.mkRaw ''
+                                function(filter)
+                                    if filter and filter.direction then
+                                        return require('luasnip').jumpable(filter.direction)
+                                    end
+                                    return require('luasnip').in_snippet()
+                                end
+                            '';
+                            jump = helpers.mkRaw ''
+                                function(direction)
+                                    require('luasnip').jump(direction)
+                                end
+                            '';
+                        };
+                        sources = {
+                            default = [
+                                "lps"
+                                "path"
+                                "snippets"
+                                "luasnip"
+                                "buffer"
+                            ];
+                        };
+                    };
+                };
+
+                # Alpha (Greeter)
+                alpha = {
+                    enable = true;
+                    theme = "theta";
+                };
+
+                # nvim-cmp
+                # cmp = {
+                #     enable = true;
+                #     settings.mapping = {
+                #         "<C-Space>" = "cmp.mapping.complete()";
+                #         "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
+                #         "<C-e>"     = "cmp.mapping.close()";
+                #         "<C-f>"     = "cmp.mapping.scroll_docs(4)";
+                #         "<CR>"      = "cmp.mapping.confirm({ select = true })";
+                #         "<S-Tab>"   = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+                #         "<Tab>"     = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+                #     };
+                #     autoEnableSources = true;
+                #     settings.sources = [
+                #         { name = "nvim_lsp"; }
+                #         #{ name = "luasnip"; }
+                #         { name = "buffer"; }
+                #         { name = "path"; }
+                #     ];
+                # };
 
                 # Buffer Bar
                 bufferline = {
@@ -191,45 +247,44 @@ in {
                 nvim-colorizer.enable = true;
 
                 # Lazygit
-                lazygit = {
-                    enable = true;
-
-                };
+                lazygit.enable = true;
 
                 # Explorer
-                nvim-tree = {
-                    enable = true;
+                # nvim-tree = {
+                #     enable = true;
+                #
+                #     git.enable = true;
+                #     modified = {
+                #         enable = true;
+                #         showOnDirs = true;
+                #         showOnOpenDirs = false;
+                #     };
+                #
+                #     renderer.addTrailing = true; # '/' trailing on dirs
+                #
+                #     autoClose = true;
+                #     tab.sync = {
+                #         close = true;
+                #         open = true;
+                #     };
+                #
+                #     hijackNetrw = true; # Keeps cursor on first char
+                #     openOnSetupFile = true; # Open tree automatically
+                #     updateFocusedFile.enable = true; # Open dirs to file
+                # };
 
-                    git.enable = true;
-                    modified = {
-                        enable = true;
-                        showOnDirs = true;
-                        showOnOpenDirs = false;
-                    };
-
-                    renderer.addTrailing = true; # '/' trailing on dirs
-
-                    autoClose = true;
-                    tab.sync = {
-                        close = true;
-                        open = true;
-                    };
-
-                    hijackNetrw = true; # Keeps cursor on first char
-                    openOnSetupFile = true; # Open tree automatically
-                    updateFocusedFile.enable = true; # Open dirs to file
-                };
+                # Oil
+                oil.enable = true;
 
                 # Fuzzy
                 telescope = {
                     enable = true;
 
                     keymaps = {
-                        "<leader>o".action = "find_files"; # Files
-                        "<leader>p".action = "builtin"; # Current dir
-                        "<leader>i".action = "live_grep"; # Current dir
-                        "<leader>u".action = "buffers"; # Open buffers
-                        "<leader>h".action = "help_tags"; # Vim man
+                        "<leader>ff".action = "find_files";
+                        "<leader>fb".action = "builtin";
+                        "<leader>fg".action = "live_grep";
+                        "<leader>fh".action = "help_tags";
                     };
                 };
 
@@ -273,42 +328,36 @@ in {
             };
 
             keymaps = [
-                # Change splits with 'CTRL + [hjkl]'
-                # tmux-navigator takes care of this
-                # {
-                #     action = ":wincmd h<CR>";
-                #     key = "<C-h>";
-                #     options.silent = true;
-                # }
-                # {
-                #     action = ":wincmd j<CR>";
-                #     key = "<C-j>";
-                #     options.silent = true;
-                # }
-                # {
-                #     action = ":wincmd k<CR>";
-                #     key = "<C-k>";
-                #     options.silent = true;
-                # }
-                # {
-                #     action = ":wincmd l<CR>";
-                #     key = "<C-l>";
-                #     options.silent = true;
-                # }
-
                 # Lazygit binds
                 {
                     action = ":LazyGit<CR>";
+                    mode = "n";
                     key = "<leader>l";
-                    options.silent = false;
+                    options.silent = true;
+                }
+
+                # Oil binds
+                {
+                    action = ":Oil<CR>";
+                    mode = "n";
+                    key = "-";
+                    options.silent = true;
+                }
+
+                # Term commands
+                {
+                    action = "<c-\\><c-n>";
+                    mode = "t";
+                    key = "<esc><esc>";
                 }
 
                 # NvimTree binds
-                {
-                    action = ":NvimTreeToggle<CR>";
-                    key = "<leader>c";
-                    options.silent = false;
-                }
+                # {
+                #     action = ":NvimTreeToggle<CR>";
+                #     mode = "n";
+                #     key = "<leader>c";
+                #     options.silent = false;
+                # }
             ];
 
             # Automated Commands

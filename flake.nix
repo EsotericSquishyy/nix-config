@@ -96,7 +96,7 @@
                 nativeBuildInputs = with pkgs.buildPackages; [
                     xspim
 
-                    (python3.withPackages (ps: with ps; with python3Packages; [
+                    (python3.withPackages (ps: with ps; with python311Packages; [
                         pandas
                         numpy
                         matplotlib
@@ -106,7 +106,7 @@
                         flask-limiter
                         # sklearn-deap
                         tensorflow
-                        keras
+                        # keras
 
                         # (buildPythonPackage rec {
                         #     pname = "pyrtl";

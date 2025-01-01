@@ -16,6 +16,17 @@ in
     };
 
     config = lib.mkIf config.hyprlandModule.enable {
+
+        home.packages = with pkgs; [
+            alacritty
+            firefox
+            xfce.thunar
+            alsa-utils
+            brightnessctl
+            rofi-wayland
+            wlogout
+        ];
+
         wayland.windowManager.hyprland = {
             enable = true;
             xwayland.enable = true;

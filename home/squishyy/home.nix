@@ -38,8 +38,8 @@ in {
     };
 
     # https://tinted-theming.github.io/base16-gallery/
-    # colorScheme = inputs.nix-colors.colorSchemes.heetch;
-    colorScheme = inputs.nix-colors.colorSchemes.darkmoss;
+    colorScheme = inputs.nix-colors.colorSchemes.atelier-forest;
+    # colorScheme = inputs.nix-colors.colorSchemes.darkmoss;
         # base00: #171e1f
         # base01: #252c2d
         # base02: #373c3d
