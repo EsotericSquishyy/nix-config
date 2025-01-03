@@ -4,13 +4,13 @@
 # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/applications/editors/vim/plugins/vim-plugin-names
 # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/vim.section.md
 let
-    transparent-nvim = pkgs.vimUtils.buildVimPlugin {
-        name = "transparent.nvim";
+    blink-compat = pkgs.vimUtils.buildVimPlugin {
+        name = "blink.compat";
         src = pkgs.fetchFromGitHub {
-            owner = "xiyaowong";
-            repo = "transparent.nvim";
+            owner = "Saghen";
+            repo = "blink.compat";
             rev = "main";
-            hash = "sha256-wT+7rmp08r0XYGp+MhjJX8dsFTar8+nf10CV9OdkOSk=";
+            hash = "sha256-tFQeKyqdo3mvptYnWxKhTpI4ROFNQ6u3P8cLqtlsozw=";
         };
     };
     helpers = config.lib.nixvim;
@@ -140,19 +140,18 @@ in {
 
                 # friendly-snippets.enable = true;
                 luasnip = {
+                    # To list snippets: require("luasnip.extras.snippet_list").open()
                     enable = true;
                     fromLua = [
-                        {}
-                        {
-                            paths = ./snippets;
-                            include = [ "nix" ];
-                        }
+                        { paths = ./snippets; }
                     ];
-                    fromSnipmate = [ {} ];
-                    fromVscode = [ {} ];
+                    fromVscode = [
+                        { paths = "${pkgs.vimPlugins.friendly-snippets}"; }
+                    ];
                 };
 
                 # Blink - https://cmp.saghen.dev/
+                cmp_luasnip.enable = true;
                 blink-cmp = {
                     enable = true;
                     settings = {
@@ -180,20 +179,19 @@ in {
                         };
                         sources = {
                             default = [
-                                "lps"
+                                "lsp"
                                 "path"
-                                "snippets"
                                 "luasnip"
                                 "buffer"
                             ];
+                            providers = {
+                                luasnip = {
+                                    name = "Luasnip";
+                                    module = "blink.compat.source";
+                                };
+                            };
                         };
                     };
-                };
-
-                # Alpha (Greeter)
-                alpha = {
-                    enable = true;
-                    theme = "theta";
                 };
 
                 # nvim-cmp
@@ -211,11 +209,17 @@ in {
                 #     autoEnableSources = true;
                 #     settings.sources = [
                 #         { name = "nvim_lsp"; }
-                #         #{ name = "luasnip"; }
+                #         { name = "luasnip"; }
                 #         { name = "buffer"; }
                 #         { name = "path"; }
                 #     ];
                 # };
+
+                # Alpha (Greeter)
+                alpha = {
+                    enable = true;
+                    theme = "theta";
+                };
 
                 # Buffer Bar
                 bufferline = {
@@ -285,6 +289,12 @@ in {
                         "<leader>fb".action = "builtin";
                         "<leader>fg".action = "live_grep";
                         "<leader>fh".action = "help_tags";
+                    };
+
+                    extensions.fzf-native.enable = true;
+                    settings.pickers = {
+                        find_files.theme = "ivy";
+                        extensions.fzf = {};
                     };
                 };
 
@@ -377,11 +387,15 @@ in {
                     plugin = comment-nvim;
                     config = "lua require(\"Comment\").setup()";
                 }
+                { # Compatibility with nvim-cmp sources
+                    plugin = blink-compat;
+                    config = "lua require(\"blink.compat\").setup({ opts = { impersonate_nvim_cmp = true, debug = true, } })";
+                }
             ];
 
             # Manual Lua Config
-            # extraConfigLua = ''
-            # '';
+            extraConfigLua = ''
+            '';
         };
         #programs.nvim = {};
     };

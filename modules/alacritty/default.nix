@@ -34,9 +34,9 @@
                 selection.save_to_clipboard = true;
                 window = {
                     #blur = true; # set in compositor settings
-                    opacity = 0.75;
-                    padding.x = 15;
-                    padding.y = 15;
+                    opacity = 0.8;
+                    padding.x = 10;
+                    padding.y = 10;
                     decorations = "None";
                 };
                 colors = with config.colorScheme.palette; {
