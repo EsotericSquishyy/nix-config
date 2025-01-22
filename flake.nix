@@ -139,7 +139,7 @@
             rust = pkgs.mkShell {
                 RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
                 nativeBuildInputs = with pkgs.buildPackages; [
-                    gcc
+                    libgcc
 
                     #rustup
                     cargo
@@ -151,8 +151,10 @@
 
             c = pkgs.mkShell {
                 nativeBuildInputs = with pkgs.buildPackages; [
-                    gcc
-                    clang
+                    libgcc
+                    # clang
+
+                    gnumake
                 ];
             };
         };

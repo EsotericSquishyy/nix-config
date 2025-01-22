@@ -115,7 +115,7 @@ in {
         # protontricks        # wintricks commands for proton
 
         # Toolchains/Compilers/etc.
-        nodejs_22           # node.js
+        nodejs_23           # node.js
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
         typst               # Out-of-editor compiler for typst

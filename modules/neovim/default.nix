@@ -121,6 +121,7 @@ in {
                         };
                         html.enable = true;
                         typst_lsp.enable = true;
+                        svelte.enable = true;
                         # leanls.enable = true; # Error with rust version
                     };
                 };
@@ -253,30 +254,6 @@ in {
                 # Lazygit
                 lazygit.enable = true;
 
-                # Explorer
-                # nvim-tree = {
-                #     enable = true;
-                #
-                #     git.enable = true;
-                #     modified = {
-                #         enable = true;
-                #         showOnDirs = true;
-                #         showOnOpenDirs = false;
-                #     };
-                #
-                #     renderer.addTrailing = true; # '/' trailing on dirs
-                #
-                #     autoClose = true;
-                #     tab.sync = {
-                #         close = true;
-                #         open = true;
-                #     };
-                #
-                #     hijackNetrw = true; # Keeps cursor on first char
-                #     openOnSetupFile = true; # Open tree automatically
-                #     updateFocusedFile.enable = true; # Open dirs to file
-                # };
-
                 # Oil
                 oil.enable = true;
 
@@ -332,12 +309,39 @@ in {
                     mappings = true;
                 };
 
+                # Markdown previewer
+                markdown-preview = {
+                    enable = true;
+                };
+
                 #hardtime.enable = true; # Learn vim commands
                 #noice.enable = true; # ui for notifs and cmd
                 #obsidian.enable = true; # Notes
             };
 
             keymaps = [
+                # Switch splits with 'CTRL + [HJKL]'
+                {
+                    action = ":wincmd H<CR>";
+                    key = "<C-S-H>";
+                    options.silent = true;
+                }
+                {
+                    action = ":wincmd J<CR>";
+                    key = "<C-S-J>";
+                    options.silent = true;
+                }
+                {
+                    action = ":wincmd K<CR>";
+                    key = "<C-S-K>";
+                    options.silent = true;
+                }
+                {
+                    action = ":wincmd L<CR>";
+                    key = "<C-S-L>";
+                    options.silent = true;
+                }
+
                 # Lazygit binds
                 {
                     action = ":LazyGit<CR>";
@@ -354,20 +358,19 @@ in {
                     options.silent = true;
                 }
 
+                # Render Markdown binds
+                {
+                    action = ":MarkdownPreview<CR>";
+                    mode = "n";
+                    key = "<leader>mm";
+                }
+
                 # Term commands
                 {
                     action = "<c-\\><c-n>";
                     mode = "t";
                     key = "<esc><esc>";
                 }
-
-                # NvimTree binds
-                # {
-                #     action = ":NvimTreeToggle<CR>";
-                #     mode = "n";
-                #     key = "<leader>c";
-                #     options.silent = false;
-                # }
             ];
 
             # Automated Commands
