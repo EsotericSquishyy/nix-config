@@ -146,13 +146,12 @@ in {
                     fromLua = [
                         { paths = ./snippets; }
                     ];
-                    fromVscode = [
-                        { paths = "${pkgs.vimPlugins.friendly-snippets}"; }
-                    ];
+                    # fromVscode = [
+                    #     { paths = "${pkgs.vimPlugins.friendly-snippets}"; }
+                    # ];
                 };
 
                 # Blink - https://cmp.saghen.dev/
-                cmp_luasnip.enable = true;
                 blink-cmp = {
                     enable = true;
                     settings = {
@@ -182,39 +181,12 @@ in {
                             default = [
                                 "lsp"
                                 "path"
-                                "luasnip"
+                                "snippets"
                                 "buffer"
                             ];
-                            providers = {
-                                luasnip = {
-                                    name = "Luasnip";
-                                    module = "blink.compat.source";
-                                };
-                            };
                         };
                     };
                 };
-
-                # nvim-cmp
-                # cmp = {
-                #     enable = true;
-                #     settings.mapping = {
-                #         "<C-Space>" = "cmp.mapping.complete()";
-                #         "<C-d>"     = "cmp.mapping.scroll_docs(-4)";
-                #         "<C-e>"     = "cmp.mapping.close()";
-                #         "<C-f>"     = "cmp.mapping.scroll_docs(4)";
-                #         "<CR>"      = "cmp.mapping.confirm({ select = true })";
-                #         "<S-Tab>"   = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-                #         "<Tab>"     = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-                #     };
-                #     autoEnableSources = true;
-                #     settings.sources = [
-                #         { name = "nvim_lsp"; }
-                #         { name = "luasnip"; }
-                #         { name = "buffer"; }
-                #         { name = "path"; }
-                #     ];
-                # };
 
                 # Alpha (Greeter)
                 alpha = {
@@ -316,7 +288,6 @@ in {
 
                 #hardtime.enable = true; # Learn vim commands
                 #noice.enable = true; # ui for notifs and cmd
-                #obsidian.enable = true; # Notes
             };
 
             keymaps = [
@@ -389,10 +360,6 @@ in {
                     # 'gb' block, 'gc' line
                     plugin = comment-nvim;
                     config = "lua require(\"Comment\").setup()";
-                }
-                { # Compatibility with nvim-cmp sources
-                    plugin = blink-compat;
-                    config = "lua require(\"blink.compat\").setup({ opts = { impersonate_nvim_cmp = true, debug = true, } })";
                 }
             ];
 

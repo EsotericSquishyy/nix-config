@@ -10,7 +10,7 @@
             enable = true;
             # custom settings
             settings = {
-                env.TERM = "alacritty";
+                env.TERM = "xterm-256color"; #"alacritty";
                 font = {
                     size = 15;
                     normal = {
