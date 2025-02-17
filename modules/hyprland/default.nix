@@ -30,6 +30,10 @@ in
         wayland.windowManager.hyprland = {
             enable = true;
             xwayland.enable = true;
+
+            package = pkgs.hyprland;
+            # systemd.variables = ["--all"]; # If hyprland doesn't export system vars
+
             settings = {
                 exec-once = ''${startupScript}/bin/start'';
 

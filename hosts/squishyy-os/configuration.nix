@@ -87,6 +87,9 @@
     #     displayManager.gdm.enable = true;
     #     displayManager.gdm.wayland = true;
     # };
+    # programs.hyprland.enable = true;
+    # services.seatd.enable = true;
+
     services.greetd = {
         enable = true;
         settings = {
