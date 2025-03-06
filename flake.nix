@@ -95,6 +95,7 @@
                 # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/python.section.md#buildpythonpackage-function
                 nativeBuildInputs = with pkgs.buildPackages; [
                     xspim
+                    pyright
 
                     (python3.withPackages (ps: with ps; with python311Packages; [
                         pandas
