@@ -39,29 +39,6 @@ in {
 
     # https://tinted-theming.github.io/base16-gallery/
     colorScheme = inputs.nix-colors.colorSchemes.atelier-forest;
-    # colorScheme = {
-    #     slug = "sushi";
-    #     name = "Sushi";
-    #     author = "pywal - squishyy";
-    #     palette = {
-    #         base00 = "#0E121B";
-    #         base01 = "#4C4D4F";
-    #         base02 = "#6C6A5F";
-    #         base03 = "#C15E59";
-    #         base04 = "#6F8F70";
-    #         base05 = "#979274";
-    #         base06 = "#DC9548";
-    #         base07 = "#c8cbba";
-    #         base08 = "#8c8e82";
-    #         base09 = "#4C4D4F";
-    #         base0A = "#6C6A5F";
-    #         base0B = "#C15E59";
-    #         base0C = "#6F8F70";
-    #         base0D = "#979274";
-    #         base0E = "#DC9548";
-    #         base0F = "#c8cbba";
-    #     };
-    # };
 
     home = {
         username = "squishyy";
@@ -101,7 +78,6 @@ in {
         nodejs_23           # node.js
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
-        typst               # Out-of-editor compiler for typst
         lean4               # Lean4 - Theorem Prover
 
         neofetch            # System info
@@ -186,6 +162,7 @@ in {
     ]) ++ (with pkgs-unstable; [
         discord
         nh # Nix Helper
+        typst # Out-of-editor compiler for typst
     ]);
 
     # Enable home-manager and git

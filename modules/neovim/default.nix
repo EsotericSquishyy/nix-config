@@ -1,11 +1,11 @@
 # nvim - Text Editor
-{ pkgs, lib, config, ...}: {
+{ pkgs, pkgs-unstable, lib, config, ...}: {
     options.neovimModule = {
         enable = lib.mkEnableOption "enables neovimModule";
     };
     config = lib.mkIf config.neovimModule.enable {
 
-        home.packages = with pkgs; [
+        home.packages = (with pkgs; [
             lazygit
             zathura # PDF viewer
 
@@ -14,13 +14,14 @@
             ripgrep
 
             # lsp deps
-            tinymist
             lua-language-server
             clang # lsp
 
             # For making dependencies
             gnumake
-        ];
+        ]) ++ (with pkgs-unstable; [
+            tinymist
+        ]);
 
 
         home.file."./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/dotfiles/nvim";
