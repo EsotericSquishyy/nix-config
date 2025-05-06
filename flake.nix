@@ -97,6 +97,7 @@
                 nativeBuildInputs = with pkgs.buildPackages; [
                     xspim
                     pyright
+                    sage
 
                     (python3.withPackages (ps: with ps; with python311Packages; [
                         pandas
