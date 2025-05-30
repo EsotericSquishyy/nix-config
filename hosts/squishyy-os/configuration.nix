@@ -79,15 +79,30 @@
     };
 
     # Enable the X11 windowing system.
-    services.xserver = {
-        enable = true;
-        layout = "us";
-        xkbVariant = "";
+    # services.xserver = {
+    #     enable = true;
+    #     xkb.layout = "us";
+    #     xkb.variant = "";
+    #
+    #     displayManager.gdm.enable = true;
+    #     displayManager.gdm.wayland = true;
+    # };
+    # programs.hyprland.enable = true;
+    # services.seatd.enable = true;
 
-        displayManager.gdm.enable = true;
-        displayManager.gdm.wayland = true;
-        # displayManager.sddm.enable = true;
-        # displayManager.sddm.theme = "${import ../../theme/sddm-theme.nix {inherit pkgs;}}";
+    services.greetd = {
+        enable = true;
+        settings = {
+            default_session = {
+                command = ''${pkgs.greetd.tuigreet}/bin/tuigreet \
+                    --remember \
+                    --remember-session \
+                    --asterisks \
+                    --time
+                '';
+                user = "squishyy";
+            };
+        };
     };
     services.keyd = {
         # https://github.com/rvaiya/keyd
@@ -126,7 +141,6 @@
     };
 
     # Enable sound with pipewire.
-    sound.enable = true;
     hardware.pulseaudio = {
         enable = false;
         extraConfig = "";
@@ -175,10 +189,9 @@
     };
 
     # For gaming, not needed with steam
-    hardware.opengl = {
+    hardware.graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
     };
     programs.steam = {
         enable = true;
@@ -192,5 +205,5 @@
 
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    system.stateVersion = "24.05";
+    system.stateVersion = "24.11";
 }

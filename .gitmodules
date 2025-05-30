@@ -1,0 +1,3 @@
+[submodule "superNvim"]
+	path = dotfiles/nvim
+	url = git@github.com:EsotericSquishyy/superNvim.git

@@ -38,47 +38,7 @@ in {
     };
 
     # https://tinted-theming.github.io/base16-gallery/
-    # colorScheme = inputs.nix-colors.colorSchemes.heetch;
-    colorScheme = inputs.nix-colors.colorSchemes.darkmoss;
-        # base00: #171e1f
-        # base01: #252c2d
-        # base02: #373c3d
-        # base03: #555e5f
-        # base04: #818f80
-        # base05: #c7c7a5
-        # base06: #e3e3c8
-        # base07: #e1eaef
-        # base08: #ff4658
-        # base09: #e6db74
-        # base0A: #fdb11f
-        # base0B: #499180
-        # base0C: #66d9ef
-        # base0D: #498091
-        # base0E: #9bc0c8
-        # base0F: #d27b53
-    # colorScheme = {
-    #     slug = "sushi";
-    #     name = "Sushi";
-    #     author = "pywal - squishyy";
-    #     palette = {
-    #         base00 = "#0E121B";
-    #         base01 = "#4C4D4F";
-    #         base02 = "#6C6A5F";
-    #         base03 = "#C15E59";
-    #         base04 = "#6F8F70";
-    #         base05 = "#979274";
-    #         base06 = "#DC9548";
-    #         base07 = "#c8cbba";
-    #         base08 = "#8c8e82";
-    #         base09 = "#4C4D4F";
-    #         base0A = "#6C6A5F";
-    #         base0B = "#C15E59";
-    #         base0C = "#6F8F70";
-    #         base0D = "#979274";
-    #         base0E = "#DC9548";
-    #         base0F = "#c8cbba";
-    #     };
-    # };
+    colorScheme = inputs.nix-colors.colorSchemes.atelier-forest;
 
     home = {
         username = "squishyy";
@@ -94,7 +54,7 @@ in {
         # Applications
         firefox             # Browser
         ungoogled-chromium  # Browser
-        discord             # Messaging
+        # discord             # Messaging
         # xwaylandvideobridge # Fix for discord screen-sharing
         obsidian            # Notes
         whatsapp-for-linux  # Messaging
@@ -115,10 +75,9 @@ in {
         # protontricks        # wintricks commands for proton
 
         # Toolchains/Compilers/etc.
-        nodejs_22           # node.js
+        nodejs_23           # node.js
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
-        typst               # Out-of-editor compiler for typst
         lean4               # Lean4 - Theorem Prover
 
         neofetch            # System info
@@ -201,7 +160,9 @@ in {
             "Mononoki"
         ];})
     ]) ++ (with pkgs-unstable; [
+        discord
         nh # Nix Helper
+        typst # Out-of-editor compiler for typst
     ]);
 
     # Enable home-manager and git
@@ -223,6 +184,12 @@ in {
         };
     };
 
+    home.pointerCursor = {
+        gtk.enable = true;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 24;
+    };
     gtk = {
         enable = true;
         theme = {
@@ -232,13 +199,6 @@ in {
         iconTheme = {
             package = pkgs.zafiro-icons;
             name = "Zafiro-icons-Dark";
-        };
-        cursorTheme = {
-            /* package = pkgs.graphite-cursors;
-            name = "graphite-dark"; */
-            package = pkgs.bibata-cursors;
-            name = "Bibate-Modern-Ice";
-            size = 17;
         };
     };
 
@@ -252,5 +212,5 @@ in {
     systemd.user.startServices = "sd-switch";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "24.05";
+    home.stateVersion = "24.11";
 }

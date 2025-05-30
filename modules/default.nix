@@ -1,5 +1,5 @@
 # Bundles app configs
-{ pkgs, lib, ...}: {
+{ pkgs, pkgs-unstable, lib, ...}: {
     imports = [
         ./hyprland
         ./waybar

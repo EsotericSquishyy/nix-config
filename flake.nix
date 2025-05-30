@@ -3,12 +3,12 @@
 
     inputs = {
         # Nixpkgs
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
         # Home manager
         home-manager = {
-            url = "github:nix-community/home-manager/release-24.05";
+            url = "github:nix-community/home-manager/release-24.11";
             # url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
@@ -16,7 +16,7 @@
         hyprland.url = "github:hyprwm/Hyprland";
 
         nixvim = {
-            url = "github:nix-community/nixvim/nixos-24.05"; # Branch doesn't exist yet
+            url = "github:nix-community/nixvim/nixos-24.11";
             # url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
@@ -48,7 +48,8 @@
         inherit (self) outputs;
         system = "x86_64-linux";
         pkgs = nixpkgs.legacyPackages.${system};
-        pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+        # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+        pkgs-unstable = import nixpkgs-unstable {inherit system; config.allowUnfree = true; };
     in {
         # NixOS configuration entrypoint
         # Available through 'nixos-rebuild --flake .#squishyy-os'
@@ -95,8 +96,10 @@
                 # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/python.section.md#buildpythonpackage-function
                 nativeBuildInputs = with pkgs.buildPackages; [
                     xspim
+                    pyright
+                    sage
 
-                    (python3.withPackages (ps: with ps; with python3Packages; [
+                    (python3.withPackages (ps: with ps; with python311Packages; [
                         pandas
                         numpy
                         matplotlib
@@ -106,7 +109,7 @@
                         flask-limiter
                         # sklearn-deap
                         tensorflow
-                        keras
+                        # keras
 
                         # (buildPythonPackage rec {
                         #     pname = "pyrtl";
@@ -139,7 +142,7 @@
             rust = pkgs.mkShell {
                 RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
                 nativeBuildInputs = with pkgs.buildPackages; [
-                    gcc
+                    libgcc
 
                     #rustup
                     cargo
@@ -151,8 +154,10 @@
 
             c = pkgs.mkShell {
                 nativeBuildInputs = with pkgs.buildPackages; [
-                    gcc
-                    clang
+                    libgcc
+                    # clang
+
+                    gnumake
                 ];
             };
         };
