@@ -75,7 +75,7 @@ in {
         # protontricks        # wintricks commands for proton
 
         # Toolchains/Compilers/etc.
-        nodejs_23           # node.js
+        nodejs_24           # node.js
         libgcc              # gcc, linker is only used in env
         ghc                 # Haskell
         lean4               # Lean4 - Theorem Prover
@@ -113,6 +113,7 @@ in {
         sage # calculator
         imagemagick # Image compressor/converter
         radare2
+        dig
 
         # networking tools
         mtr # A network diagnostic tool
@@ -154,11 +155,15 @@ in {
         font-awesome
         powerline-fonts
         powerline-symbols
-        (nerdfonts.override { fonts = [
-            "NerdFontsSymbolsOnly"
-            "FiraCode"
-            "Mononoki"
-        ];})
+        nerd-fonts.mononoki
+        nerd-fonts.symbols-only
+        # nerd-fonts.zed-mono
+
+        # (nerdfonts.override { fonts = [
+        #     "NerdFontsSymbolsOnly"
+        #     "FiraCode"
+        #     "Mononoki"
+        # ];})
     ]) ++ (with pkgs-unstable; [
         discord
         nh # Nix Helper
@@ -212,5 +217,5 @@ in {
     systemd.user.startServices = "sd-switch";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.05";
 }

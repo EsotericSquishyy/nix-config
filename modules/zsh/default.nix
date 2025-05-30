@@ -40,7 +40,7 @@
                 ];
             };
 
-            initExtra = ''
+            initContent = ''
                 eval "$(${pkgs.zoxide}/bin/zoxide init --cmd cd zsh)"
             '';
         };
