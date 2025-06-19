@@ -98,7 +98,7 @@
                     pyright
                     sage
 
-                    (python3.withPackages (ps: with ps; with python311Packages; [
+                    (python3.withPackages (ps: with ps; with python312Packages; [
                         pandas
                         numpy
                         matplotlib

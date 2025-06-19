@@ -3,8 +3,8 @@
     options.neovimModule = {
         enable = lib.mkEnableOption "enables neovimModule";
     };
-    config = lib.mkIf config.neovimModule.enable {
 
+    config = lib.mkIf config.neovimModule.enable {
         home.packages = (with pkgs; [
             lazygit
             zathura # PDF viewer
@@ -24,7 +24,7 @@
         ]);
 
 
-        home.file."./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/dotfiles/nvim";
+        home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/dotfiles/nvim";
 
         programs.neovim = {
             enable = true;

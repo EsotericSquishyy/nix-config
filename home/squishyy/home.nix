@@ -112,7 +112,6 @@ in {
         zoxide
         sage # calculator
         imagemagick # Image compressor/converter
-        radare2
         dig
 
         # networking tools
