@@ -19,7 +19,4 @@
     neovimModule.enable     = lib.mkDefault true;
     zshModule.enable        = lib.mkDefault true;
     tmuxModule.enable       = lib.mkDefault true;
-
-    # agsModule.enable        = lib.mkDefault false;
-    # ewwModule.enable        = lib.mkDefault false;
 }
